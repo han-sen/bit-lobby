@@ -21,6 +21,7 @@ const Index = (props) => {
                             </div>
                         );
                     })}
+                <a href="/new">Add a room</a>
             </div>
         </Default>
     );
