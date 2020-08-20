@@ -13,13 +13,13 @@ const mongoURI = process.env.MONGO_URI;
 const db = mongoose.connection;
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.connection.once("open", () => {
-    console.log("connected to mongo");
+    console.log("Connected to MongoDB");
 });
 db.on("open", () => {
-    console.log("Connection made!");
+    console.log("* Connection Open! *");
 });
-// const Products = require("./models/products");
-// const productSeed = require("./models/productSeed");
+const Rooms = require("./models/rooms");
+const roomSeed = require("./models/roomSeed");
 
 // <- MIDDLEWARE ================================== ->
 
@@ -31,9 +31,46 @@ app.use(methodOverride("_method"));
 
 // <- ROUTES ====================================== ->
 
+// SEED DB
+app.get("/seed", (req, res) => {
+    Rooms.deleteMany({}, () => {});
+    Rooms.create(roomSeed, (error, data) => {
+        error ? res.status(400).json(error) : res.redirect("/");
+    });
+});
+
+// INDEX / HOME
+// serve the list of available public chat rooms
 app.get("/", (req, res) => {
-    res.render("Index", {
-        rooms: rooms,
+    Rooms.find({}, (error, roomList) => {
+        error
+            ? res.send(error.message)
+            : res.render("Index", { rooms: roomList });
+    });
+});
+
+// NEW
+app.get("/new", (req, res) => {
+    res.render("New");
+});
+
+// Create
+app.post("/", (req, res) => {
+    req.body.privateRoom = req.body.privateRoom === "on" ? true : false;
+    Rooms.create(req.body, (error, newRoom) => {
+        error ? res.send(error.message) : res.redirect("/");
+    });
+});
+
+// SHOW
+// serve the selected chat room
+app.get("/:id", (req, res) => {
+    Rooms.findById(req.params.id, (error, foundRoom) => {
+        error
+            ? res.send(error.message)
+            : res.render("Show", {
+                  room: foundRoom,
+              });
     });
 });
 

@@ -1,0 +1,14 @@
+body {
+    margin: 0;
+}
+
+.page_wrap {
+    padding: 1em;
+}
+
+.chat_wrap {
+    background: red;
+    border: 1px solid black;
+    width: 100%;
+    min-height: 100px;
+}
