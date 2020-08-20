@@ -1,9 +1,11 @@
 const React = require("react");
 const Default = require("./components/Default");
 const Chat = require("./components/Chat");
+const DeleteButton = require("./components/DeleteButton");
 
 const Show = (props) => {
     const {
+        id,
         name,
         description,
         privateRoom,
@@ -15,6 +17,7 @@ const Show = (props) => {
         <Default page={name}>
             <div>
                 <h1>{name}</h1>
+                <p>{description}</p>
                 <p>Active users:</p>
                 <ul>
                     {users.map((user) => (
@@ -23,7 +26,21 @@ const Show = (props) => {
                 </ul>
                 <p>{privateRoom ? "Private room" : "Public room"}</p>
                 <Chat messages={messages} />
-                <a href="/">Back to index</a>
+                <ul>
+                    <li>
+                        <a href={`/${id}/edit`}>Edit</a>
+                    </li>
+                    {!privateRoom ? (
+                        <li>
+                            <DeleteButton id={id}></DeleteButton>
+                        </li>
+                    ) : (
+                        ""
+                    )}
+                    <li>
+                        <a href="/">Back to index</a>
+                    </li>
+                </ul>
             </div>
         </Default>
     );

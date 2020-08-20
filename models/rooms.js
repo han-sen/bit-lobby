@@ -6,7 +6,7 @@ const roomSchema = new mongoose.Schema(
         description: { type: String, required: true },
         privateRoom: { type: Boolean, default: false, required: true },
         perma: { type: Boolean, default: false, required: true },
-        users: { type: Array, default: [], required: true },
+        users: { type: Array, default: ["Lobby Bot"], required: true },
         messages: { type: Array, required: false },
     },
     { timestamps: true }
