@@ -1,1 +1,3 @@
-# bit-lobby
+# Bit Lobby
+
+Live chat rooms for coding.
