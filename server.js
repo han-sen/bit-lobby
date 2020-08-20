@@ -18,8 +18,6 @@ mongoose.connection.once("open", () => {
 db.on("open", () => {
     console.log("* Connection Open! *");
 });
-const Rooms = require("./models/rooms");
-const roomSeed = require("./models/roomSeed");
 
 // <- MIDDLEWARE ================================== ->
 
@@ -33,6 +31,8 @@ app.use(methodOverride("_method"));
 
 const roomsController = require("./controllers/roomsController.js");
 app.use("/", roomsController);
+
+// <- WEBSOCKETS ====================================== ->
 
 // <- LISTENER ====================================== ->
 

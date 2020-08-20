@@ -10,6 +10,10 @@ module.exports = [
                 name: "nodemon",
                 text: "chillin in js",
             },
+            {
+                name: "Lobby Bot",
+                text: "Welcome to the JS lounge",
+            },
         ],
     },
     {
