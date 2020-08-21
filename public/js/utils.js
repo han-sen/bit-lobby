@@ -21,3 +21,5 @@ darkTheme.onclick = () => {
     document.querySelector("body").classList.add("dark");
     localStorage.setItem("theme", "dark");
 };
+
+// <- NAME GENERATOR ======================================== ->

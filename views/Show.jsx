@@ -12,6 +12,7 @@ const Show = (props) => {
         users,
         messages,
     } = props.room;
+    const userName = props.userName;
     return (
         <Default page={name}>
             <div className="room_wrap">
@@ -34,7 +35,7 @@ const Show = (props) => {
                         </button>
                     )}
                 </div>
-                <Chat roomId={id} messages={messages} />
+                <Chat roomId={id} userName={userName} messages={messages} />
             </div>
         </Default>
     );

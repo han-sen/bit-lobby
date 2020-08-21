@@ -68,6 +68,7 @@ router.put("/:id", (req, res) => {
 
 // SHOW
 router.get("/:id", (req, res) => {
+    const userName = req.query.userName ? req.query.userName : "Guest";
     Rooms.findOne({ _id: req.params.id })
         // after we find room, we need to hyrdate/populate the document's messages
         .populate("messages")
@@ -76,6 +77,7 @@ router.get("/:id", (req, res) => {
                 ? res.send(error.message)
                 : res.render("Show", {
                       room: roomWithMessages,
+                      userName: userName,
                   });
         });
 });

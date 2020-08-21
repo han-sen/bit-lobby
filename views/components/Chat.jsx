@@ -3,7 +3,7 @@ const MessageInput = require("./MessageInput");
 const moment = require("moment");
 
 const Chat = (props) => {
-    const { roomId, messages } = props;
+    const { roomId, userName, messages } = props;
     return (
         <div className="chat_wrap">
             <div className="messages_wrap">
@@ -25,7 +25,7 @@ const Chat = (props) => {
                     })}
                 </ul>
             </div>
-            <MessageInput roomId={roomId} />
+            <MessageInput userName={userName} roomId={roomId} />
         </div>
     );
 };

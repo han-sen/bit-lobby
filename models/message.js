@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const messageSchema = new mongoose.Schema(
     {
-        userName: { type: String, required: true },
+        userName: { type: String, default: "Guest", required: true },
         text: { type: String, required: true },
         createdAt: { type: Date },
     },

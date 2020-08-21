@@ -36,11 +36,6 @@ app.use("/", roomsController);
 
 // <- UTILS ====================================== ->
 
-// check for userName in localStorage, else set as guest
-const getUserName = (value) => {
-    localStorage.getItem("userName", value);
-};
-
 // function to push new messages to their associated room
 const addMessage = (roomId, message) => {
     // first we create a new message
@@ -58,7 +53,6 @@ const addMessage = (roomId, message) => {
 app.post("/messages", (req, res) => {
     addMessage(req.body.id, {
         // still need to set userName dynamically, bring in query string?
-        // we could use localStorage for this too
         userName: req.body.userName,
         text: req.body.text,
         createdAt: Date.now(),
