@@ -17,6 +17,7 @@ const Show = (props) => {
         <Default page={name}>
             <div>
                 <h1>{name}</h1>
+                <p>{privateRoom ? "Private room" : "Public room"}</p>
                 <p>{description}</p>
                 <p>Active users:</p>
                 <ul>
@@ -24,23 +25,16 @@ const Show = (props) => {
                         <li>{user}</li>
                     ))}
                 </ul>
-                <p>{privateRoom ? "Private room" : "Public room"}</p>
                 <Chat messages={messages} />
-                <ul>
-                    <li>
+                {!perma && <DeleteButton id={id}></DeleteButton>}
+                {!perma && (
+                    <button>
                         <a href={`/${id}/edit`}>Edit</a>
-                    </li>
-                    {!privateRoom ? (
-                        <li>
-                            <DeleteButton id={id}></DeleteButton>
-                        </li>
-                    ) : (
-                        ""
-                    )}
-                    <li>
-                        <a href="/">Back to index</a>
-                    </li>
-                </ul>
+                    </button>
+                )}
+                <button>
+                    <a href="/">Back to index</a>
+                </button>
             </div>
         </Default>
     );

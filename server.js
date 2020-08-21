@@ -18,6 +18,8 @@ mongoose.connection.once("open", () => {
 db.on("open", () => {
     console.log("* Connection Open! *");
 });
+const Message = require("./models/message");
+const Rooms = require("./models/rooms");
 
 // <- MIDDLEWARE ================================== ->
 
@@ -32,7 +34,37 @@ app.use(methodOverride("_method"));
 const roomsController = require("./controllers/roomsController.js");
 app.use("/", roomsController);
 
+// <- UTILS ====================================== ->
+
+// function to push new messages to their associated room
+const addMessage = (roomId, comment) => {
+    // first we create a new message
+    return Message.create(comment).then((newComment) => {
+        console.log(newComment);
+        // then we chain on a room-lookup by id and push to messages array
+        return Rooms.findByIdAndUpdate(
+            roomId,
+            { $push: { messages: newComment._id } },
+            { new: true, useFindAndModify: false }
+        );
+    });
+};
+
+const populateMessages = (id) => {
+    return Rooms.findById(id).populate("messages");
+};
+
+addMessage("5f3efeef19e9dec5af0d4436", {
+    userName: "Mike",
+    text: "Checkin out the JS room",
+    createdAt: Date.now(),
+});
+
 // <- WEBSOCKETS ====================================== ->
+
+// we need to create a new message object on each submit
+// we need to grab the id from the current room
+// and push a reference to that in each message
 
 // <- LISTENER ====================================== ->
 

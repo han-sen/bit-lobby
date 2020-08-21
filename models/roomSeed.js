@@ -1,3 +1,5 @@
+const { Mongoose } = require("mongoose");
+
 module.exports = [
     {
         name: "javascript",
@@ -5,16 +7,6 @@ module.exports = [
         privateRoom: false,
         perma: true,
         users: ["Lobby Bot", "Nodemon"],
-        messages: [
-            {
-                name: "nodemon",
-                text: "chillin in js",
-            },
-            {
-                name: "Lobby Bot",
-                text: "Welcome to the JS lounge",
-            },
-        ],
     },
     {
         name: "python",

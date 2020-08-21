@@ -1,4 +1,5 @@
 const React = require("react");
+const ThemeToggle = require("./ThemeToggle");
 
 const Default = (props) => {
     return (
@@ -16,7 +17,9 @@ const Default = (props) => {
                 ></link>
             </head>
             <body>
+                <ThemeToggle />
                 <div className="page_wrap">{props.children}</div>
+                <script src="js/main.js"></script>
             </body>
         </html>
     );

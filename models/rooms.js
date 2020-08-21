@@ -7,7 +7,12 @@ const roomSchema = new mongoose.Schema(
         privateRoom: { type: Boolean, default: false, required: true },
         perma: { type: Boolean, default: false, required: true },
         users: { type: Array, default: ["Lobby Bot"], required: true },
-        messages: { type: Array, required: false },
+        messages: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Message",
+            },
+        ],
     },
     { timestamps: true }
 );

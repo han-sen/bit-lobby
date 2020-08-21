@@ -67,14 +67,29 @@ router.put("/:id", (req, res) => {
 
 // SHOW
 // serve the selected chat room
+// router.get("/:id", (req, res) => {
+//     Rooms.findById(req.params.id, (error, foundRoom) => {
+//         if (error) {
+//             res.send(error.message);
+//         } else {
+//             const messages = foundRoom.messages;
+//             console.log(messages);
+//             res.render("Show", {
+//                 room: foundRoom,
+//                 messages: messages,
+//             });
+//         }
+//     });
+// });
+
 router.get("/:id", (req, res) => {
-    Rooms.findById(req.params.id, (error, foundRoom) => {
-        error
-            ? res.send(error.message)
-            : res.render("Show", {
-                  room: foundRoom,
-              });
-    });
+    Rooms.findOne({ _id: req.params.id })
+        .populate("messages")
+        .exec((err, roomWithMessages) => {
+            res.render("Show", {
+                room: roomWithMessages,
+            });
+        });
 });
 
 module.exports = router;

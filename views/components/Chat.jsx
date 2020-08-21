@@ -9,7 +9,7 @@ const Chat = (props) => {
                     {messages.map((message) => {
                         return (
                             <li>
-                                {message.name}: {message.text}
+                                {message.userName}: {message.text}
                             </li>
                         );
                     })}
