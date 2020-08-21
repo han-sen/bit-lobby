@@ -2,6 +2,7 @@
 
 const express = require("express");
 const mongoose = require("mongoose");
+const moment = require("moment");
 const methodOverride = require("method-override");
 require("dotenv").config();
 const app = express();
@@ -16,7 +17,7 @@ mongoose.connection.once("open", () => {
     console.log("Connected to MongoDB");
 });
 db.on("open", () => {
-    console.log("* Connection Open! *");
+    console.log("* __Connection Open__ *");
 });
 const Message = require("./models/message");
 const Rooms = require("./models/rooms");
@@ -38,10 +39,13 @@ app.use("/", roomsController);
 
 // function to push new messages to their associated room
 
+// check for userName in localStorage, else set as guest
+const checkUserName = () => {};
+
 const addMessage = (roomId, message) => {
     // first we create a new message
     return Message.create(message).then((newMessage) => {
-        // then we chain on a room-lookup by id and push to messages array
+        // then we chain on a room-lookup by id and push ref to messages array
         return Rooms.findByIdAndUpdate(
             roomId,
             { $push: { messages: newMessage._id } },
@@ -54,6 +58,7 @@ const addMessage = (roomId, message) => {
 app.post("/messages", (req, res) => {
     addMessage(req.body.id, {
         // still need to set userName dynamically, bring in query string?
+        // we could use localStorage for this too
         userName: req.body.userName,
         text: req.body.text,
         createdAt: Date.now(),

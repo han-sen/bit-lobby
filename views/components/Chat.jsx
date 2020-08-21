@@ -1,4 +1,5 @@
 const React = require("react");
+const moment = require("moment");
 
 const Chat = (props) => {
     const { roomId, messages } = props;
@@ -10,7 +11,15 @@ const Chat = (props) => {
                     {messages.map((message) => {
                         return (
                             <li>
-                                {message.userName}: {message.text}
+                                <p className="message_name">
+                                    {message.userName}
+                                    <span className="message_time">
+                                        {moment(message.createdAt).format(
+                                            "h:mm a"
+                                        )}
+                                    </span>
+                                </p>
+                                <p className="message_text"> {message.text}</p>
                             </li>
                         );
                     })}

@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    transition: all 1s ease;
 }
 
 body.dark {
@@ -17,13 +18,32 @@ li {
 
 .chat_wrap {
     border: 1px solid black;
-    width: 100%;
+    max-width: 600px;
 }
 
 .messages_wrap {
-    min-height: 100px;
-    max-height: 300px;
+    min-height: 250px;
+    max-height: 500px;
     overflow-y: scroll;
+}
+
+.message_name {
+    font-weight: bold;
+    margin: 0;
+}
+
+.message_text {
+    margin-top: 0;
+}
+
+.message_time {
+    font-size: 0.6em;
+    margin-left: 0.5em;
+}
+
+.chat_wrap ul {
+    padding: 0;
+    margin: 0;
 }
 
 .chat_wrap li {
@@ -32,8 +52,13 @@ li {
     background: #eee;
 }
 
+.input_wrap {
+    border-top: 1px solid black;
+}
+
 .input_wrap input[type="text"] {
     width: 90%;
+    height: 2em;
     margin: 0;
     border: none;
     padding: 0;
@@ -41,6 +66,7 @@ li {
 
 .input_wrap input[type="submit"] {
     width: 10%;
+    height: 2em;
     margin: 0;
     border: none;
     padding: 0;
