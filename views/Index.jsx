@@ -1,13 +1,11 @@
 const React = require("react");
 const Default = require("./components/Default");
-const SignIn = require("./components/SignIn");
 
 const Index = (props) => {
     const rooms = props.rooms;
     return (
         <Default page="Bit Lobby">
             <div className="content_wrap">
-                <SignIn />
                 <h1>Room List</h1>
                 <div className="room_list_wrap">
                     {rooms
