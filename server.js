@@ -2,7 +2,6 @@
 
 const express = require("express");
 const mongoose = require("mongoose");
-const moment = require("moment");
 const methodOverride = require("method-override");
 require("dotenv").config();
 const app = express();
@@ -67,7 +66,7 @@ app.post("/messages", (req, res) => {
     // need to make this async
     setTimeout(() => {
         res.redirect(`/${req.body.id}`);
-    }, 2000);
+    }, 1000);
 });
 
 // <- WEBSOCKETS ====================================== ->

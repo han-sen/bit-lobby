@@ -16,14 +16,25 @@ li {
     padding: 1em;
 }
 
+.room_wrap {
+    display: flex;
+}
+
+.room_controls {
+    padding: 0 1em;
+}
+
+.room_controls ul {
+    padding: 0;
+}
+
 .chat_wrap {
     border: 1px solid black;
-    max-width: 600px;
+    width: 600px;
 }
 
 .messages_wrap {
-    min-height: 250px;
-    max-height: 500px;
+    height: 500px;
     overflow-y: scroll;
 }
 

@@ -1,5 +1,6 @@
 const React = require("react");
 const Default = require("./components/Default");
+const DeleteButton = require("./components/DeleteButton");
 
 const Edit = (props) => {
     const { id, name, description, privateRoom } = props.room;
@@ -26,6 +27,7 @@ const Edit = (props) => {
                     <br />
                     <input type="submit" name="" value="Submit Changes" />
                 </form>
+                <DeleteButton id={id} />
                 <a href="/">Back to index</a>
             </div>
         </Default>

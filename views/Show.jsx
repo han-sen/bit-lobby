@@ -15,26 +15,27 @@ const Show = (props) => {
     } = props.room;
     return (
         <Default page={name}>
-            <div>
-                <h1>{name}</h1>
-                <p>{privateRoom ? "Private room" : "Public room"}</p>
-                <p>{description}</p>
-                <p>Active users:</p>
-                <ul>
-                    {users.map((user) => (
-                        <li>{user}</li>
-                    ))}
-                </ul>
-                <Chat roomId={id} messages={messages} />
-                {!perma && <DeleteButton id={id}></DeleteButton>}
-                {!perma && (
+            <div className="room_wrap">
+                <div className="room_controls">
+                    <h1>{name}</h1>
+                    <p>{privateRoom ? "Private room" : "Public room"}</p>
+                    <p>{description}</p>
+                    <p>Active users:</p>
+                    <ul>
+                        {users.map((user) => (
+                            <li>{user}</li>
+                        ))}
+                    </ul>
                     <button>
-                        <a href={`/${id}/edit`}>Edit</a>
+                        <a href="/">Home</a>
                     </button>
-                )}
-                <button>
-                    <a href="/">Back to index</a>
-                </button>
+                    {!perma && (
+                        <button>
+                            <a href={`/${id}/edit`}>Edit</a>
+                        </button>
+                    )}
+                </div>
+                <Chat roomId={id} messages={messages} />
             </div>
         </Default>
     );
