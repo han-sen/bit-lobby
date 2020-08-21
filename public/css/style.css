@@ -49,6 +49,10 @@ h2 {
     display: flex;
 }
 
+.room_list_wrap {
+    max-width: 300px;
+}
+
 .room_listing {
     display: flex;
     justify-content: space-between;

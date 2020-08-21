@@ -9,6 +9,7 @@ const Index = (props) => {
                 <h1>Room List</h1>
                 <div className="room_list_wrap">
                     <form action="/" method="GET">
+                        <label>User Name:</label>
                         <input type="text" name="userName" />
                         {rooms
                             .filter((room) => !room.privateRoom)
@@ -29,7 +30,10 @@ const Index = (props) => {
                                             <p> {room.name}</p>
                                         </div>
                                         <div className="room_grid">
-                                            <p>{room.users.length}</p>
+                                            <p>
+                                                {room.users.length}
+                                                <i className="fas fa-user"></i>
+                                            </p>
                                         </div>
                                     </div>
                                 );

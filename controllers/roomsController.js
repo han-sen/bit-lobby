@@ -17,7 +17,7 @@ router.get("/seed", (req, res) => {
 router.get("/", (req, res) => {
     // if submitting index form to join room
     req.query.room
-        ? res.redirect(`/${req.query.room}&userName=${req.query.userName}`)
+        ? res.redirect(`/${req.query.room}?userName=${req.query.userName}`)
         : // else render index page
           Rooms.find({}, (error, roomList) => {
               error
@@ -72,8 +72,8 @@ router.get("/:id/edit", (req, res) => {
 
 // SHOW
 router.get("/:id", (req, res) => {
-    const roomId = req.url.split("&").shift().slice(1);
-    const userName = req.url.split("=").pop();
+    const roomId = req.params.id;
+    const userName = req.query.userName;
     Rooms.findOne({ _id: roomId })
         // after we find room, we need to hyrdate/populate the document's messages
         .populate("messages")
