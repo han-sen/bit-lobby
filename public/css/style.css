@@ -125,5 +125,5 @@ h2 {
 
 body.dark {
     background: #071e3d;
-    color: #21e6c1;
+    color: var(--green-light);
 }
