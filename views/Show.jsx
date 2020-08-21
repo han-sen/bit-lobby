@@ -1,7 +1,6 @@
 const React = require("react");
 const Default = require("./components/Default");
 const Chat = require("./components/Chat");
-const DeleteButton = require("./components/DeleteButton");
 
 const Show = (props) => {
     const {
@@ -23,7 +22,7 @@ const Show = (props) => {
                     <p>Active users:</p>
                     <ul>
                         {users.map((user) => (
-                            <li>{user}</li>
+                            <li key={user}>{user}</li>
                         ))}
                     </ul>
                     <button>

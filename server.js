@@ -39,7 +39,9 @@ app.use("/", roomsController);
 // function to push new messages to their associated room
 
 // check for userName in localStorage, else set as guest
-const checkUserName = () => {};
+const setUserName = (value) => {
+    localStorage.setItem("userName", value);
+};
 
 const addMessage = (roomId, message) => {
     // first we create a new message
