@@ -19,6 +19,11 @@ const Default = (props) => {
                     type="text/css"
                     href="/css/style.css"
                 ></link>
+                <script
+                    src="https://kit.fontawesome.com/8050e0389d.js"
+                    crossOrigin="anonymous"
+                    defer
+                ></script>
             </head>
             <body>
                 <ThemeToggle />

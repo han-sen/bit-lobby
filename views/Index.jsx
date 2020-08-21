@@ -8,20 +8,36 @@ const Index = (props) => {
             <div className="content_wrap">
                 <h1>Room List</h1>
                 <div className="room_list_wrap">
-                    {rooms
-                        .filter((room) => !room.privateRoom)
-                        .map((room) => {
-                            return (
-                                <div className="room_listing" key={room._id}>
-                                    <p>
-                                        <a href={room._id}>{room.name}</a>
-                                    </p>
-                                    <p>{room.description}</p>
-                                    <p>Users: {room.users.length}</p>
-                                    <hr></hr>
-                                </div>
-                            );
-                        })}
+                    <form action="/" method="GET">
+                        <input type="text" name="userName" />
+                        {rooms
+                            .filter((room) => !room.privateRoom)
+                            .map((room) => {
+                                return (
+                                    <div
+                                        className="room_listing"
+                                        key={room._id}
+                                    >
+                                        <div className="room_grid">
+                                            <input
+                                                type="radio"
+                                                name="room"
+                                                defaultValue={room._id}
+                                            />
+                                        </div>
+                                        <div className="room_grid">
+                                            <p> {room.name}</p>
+                                        </div>
+                                        <div className="room_grid">
+                                            <p>{room.users.length}</p>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        <button className="button primary" type="submit">
+                            JOIN
+                        </button>
+                    </form>
                 </div>
                 <a href="/new">Add a room</a>
             </div>

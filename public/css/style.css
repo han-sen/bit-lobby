@@ -1,17 +1,45 @@
+/************ GLOBAL STYLES ************/
+
+:root {
+    --green-light: #92e7c9;
+    --green-med: #67d1ac;
+    --green-dark: #41b38b;
+    --blue-light: #97bfe5;
+    --blue-med: #6d9ece;
+    --blue-dark: #487cae;
+    --orange-light: #ffc0a1;
+    --orange-med: #ffa77d;
+    --orange-dark: #ff925d;
+}
+
 body {
     margin: 0;
     min-height: 100vh;
     transition: all 0.2s ease;
 }
 
-body.dark {
-    background: #071e3d;
-    color: #21e6c1;
-}
-
 li {
     list-style: none;
 }
+
+h1 {
+    font-weight: 700;
+}
+
+h2 {
+    font-weight: 700;
+}
+
+.fas {
+    margin-right: 0.25em;
+    color: var(--green-light);
+}
+
+.fa-database {
+    color: var(--blue-light);
+}
+
+/************ ELEMENT STYLES ************/
 
 .page_wrap {
     padding: 1em;
@@ -21,12 +49,21 @@ li {
     display: flex;
 }
 
+.room_listing {
+    display: flex;
+    justify-content: space-between;
+}
+
 .room_controls {
     padding: 0 1em;
 }
 
 .room_controls ul {
     padding: 0;
+}
+
+.room_img {
+    max-width: 200px;
 }
 
 .chat_wrap {
@@ -82,4 +119,11 @@ li {
     margin: 0;
     border: none;
     padding: 0;
+}
+
+/************ DARK MODE STYLES ************/
+
+body.dark {
+    background: #071e3d;
+    color: #21e6c1;
 }

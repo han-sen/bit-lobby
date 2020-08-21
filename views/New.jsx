@@ -7,9 +7,17 @@ const New = () => {
             <div>
                 <h2>NEW PAGE</h2>
                 <form action="/" method="POST">
-                    Name: <input type="text" name="name" />
+                    Room Name: <input type="text" name="name" required />
                     <br />
-                    Description: <input type="text" name="description" />
+                    Description:{" "}
+                    <input type="text" name="description" required />
+                    <br />
+                    Image:{" "}
+                    <input
+                        type="text"
+                        name="img"
+                        defaultValue="/img/room.png"
+                    />
                     <br />
                     Private:
                     <input type="checkbox" name="privateRoom" />

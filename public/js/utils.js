@@ -22,4 +22,7 @@ darkTheme.onclick = () => {
     localStorage.setItem("theme", "dark");
 };
 
+// <- FORM VALIDATOR ======================================== ->
+// add event listener to change/enable 'Join Room' button when ready
+
 // <- NAME GENERATOR ======================================== ->

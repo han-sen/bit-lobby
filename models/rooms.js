@@ -4,6 +4,7 @@ const roomSchema = new mongoose.Schema(
     {
         name: { type: String, required: true },
         description: { type: String, required: true },
+        img: { type: String, default: "/img/room.png", required: false },
         privateRoom: { type: Boolean, default: false, required: true },
         perma: { type: Boolean, default: false, required: true },
         users: { type: Array, default: ["Lobby Bot"], required: true },

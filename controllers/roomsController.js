@@ -1,4 +1,5 @@
 const express = require("express");
+const url = require("url");
 const router = express.Router();
 const Rooms = require("../models/rooms.js");
 const roomSeed = require("../models/roomSeed.js");
@@ -13,13 +14,16 @@ router.get("/seed", (req, res) => {
 });
 
 // INDEX / HOME
-// serve the list of available public chat rooms
 router.get("/", (req, res) => {
-    Rooms.find({}, (error, roomList) => {
-        error
-            ? res.send(error.message)
-            : res.render("Index", { rooms: roomList });
-    });
+    // if submitting index form to join room
+    req.query.room
+        ? res.redirect(`/${req.query.room}&userName=${req.query.userName}`)
+        : // else render index page
+          Rooms.find({}, (error, roomList) => {
+              error
+                  ? res.send(error.message)
+                  : res.render("Index", { rooms: roomList });
+          });
 });
 
 // NEW
@@ -27,14 +31,27 @@ router.get("/new", (req, res) => {
     res.render("New");
 });
 
-// Delete
+// DELETE
 router.delete("/:id", (req, res) => {
     Rooms.findByIdAndRemove(req.params.id, (error, deletedRoom) => {
         error ? res.send(error.message) : res.redirect("/");
     });
 });
 
-// Create Room
+// UPDATE
+router.put("/:id", (req, res) => {
+    req.body.privateRoom = req.body.privateRoom === "on" ? true : false;
+    Rooms.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        { new: true },
+        (error, updatedRoom) => {
+            error ? res.send(error.message) : res.redirect(`/${req.params.id}`);
+        }
+    );
+});
+
+// CREATE
 router.post("/", (req, res) => {
     req.body.privateRoom = req.body.privateRoom === "on" ? true : false;
     Rooms.create(req.body, (error, newRoom) => {
@@ -53,23 +70,11 @@ router.get("/:id/edit", (req, res) => {
     });
 });
 
-// Put
-router.put("/:id", (req, res) => {
-    req.body.privateRoom = req.body.privateRoom === "on" ? true : false;
-    Rooms.findByIdAndUpdate(
-        req.params.id,
-        req.body,
-        { new: true },
-        (error, updatedRoom) => {
-            error ? res.send(error.message) : res.redirect(`/${req.params.id}`);
-        }
-    );
-});
-
 // SHOW
 router.get("/:id", (req, res) => {
-    const userName = req.query.userName ? req.query.userName : "Guest";
-    Rooms.findOne({ _id: req.params.id })
+    const roomId = req.url.split("&").shift().slice(1);
+    const userName = req.url.split("=").pop();
+    Rooms.findOne({ _id: roomId })
         // after we find room, we need to hyrdate/populate the document's messages
         .populate("messages")
         .exec((error, roomWithMessages) => {

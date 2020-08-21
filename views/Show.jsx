@@ -7,12 +7,14 @@ const Show = (props) => {
         id,
         name,
         description,
+        img,
         privateRoom,
         perma,
         users,
         messages,
     } = props.room;
     const userName = props.userName;
+    console.log(`at show username is: ${userName}`);
     return (
         <Default page={name}>
             <div className="room_wrap">
@@ -20,10 +22,18 @@ const Show = (props) => {
                     <h1>{name}</h1>
                     <p>{privateRoom ? "Private room" : "Public room"}</p>
                     <p>{description}</p>
+                    <img className="room_img" src={img} />
                     <p>Active users:</p>
                     <ul>
                         {users.map((user) => (
-                            <li key={user}>{user}</li>
+                            <li key={user}>
+                                {user === "Lobby Bot" ? (
+                                    <i className="fas fa-database"></i>
+                                ) : (
+                                    <i className="fas fa-user"></i>
+                                )}
+                                {user}
+                            </li>
                         ))}
                     </ul>
                     <button>

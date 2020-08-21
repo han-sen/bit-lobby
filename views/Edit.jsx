@@ -9,13 +9,20 @@ const Edit = (props) => {
             <div>
                 <h1>Edit Page</h1>
                 <form action={`/${id}?_method=PUT`} method="POST">
-                    Name: <input type="text" name="name" defaultValue={name} />
+                    Room Name: <input type="text" name="name" defaultValue={name} />
                     <br />
                     Description:
                     <input
                         type="text"
                         name="description"
                         defaultValue={description}
+                    />
+                    <br />
+                    Image:{" "}
+                    <input
+                        type="text"
+                        name="img"
+                        defaultValue="/img/room.png"
                     />
                     <br />
                     Private:
