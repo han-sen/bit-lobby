@@ -37,34 +37,38 @@ app.use("/", roomsController);
 // <- UTILS ====================================== ->
 
 // function to push new messages to their associated room
-const addMessage = (roomId, comment) => {
+
+const addMessage = (roomId, message) => {
     // first we create a new message
-    return Message.create(comment).then((newComment) => {
-        console.log(newComment);
+    return Message.create(message).then((newMessage) => {
         // then we chain on a room-lookup by id and push to messages array
         return Rooms.findByIdAndUpdate(
             roomId,
-            { $push: { messages: newComment._id } },
+            { $push: { messages: newMessage._id } },
             { new: true, useFindAndModify: false }
         );
     });
 };
 
-const populateMessages = (id) => {
-    return Rooms.findById(id).populate("messages");
-};
-
-addMessage("5f3efeef19e9dec5af0d4436", {
-    userName: "Mike",
-    text: "Checkin out the JS room",
-    createdAt: Date.now(),
+// Add Message
+app.post("/messages", (req, res) => {
+    addMessage(req.body.id, {
+        // still need to set userName dynamically, bring in query string?
+        userName: req.body.userName,
+        text: req.body.text,
+        createdAt: Date.now(),
+    });
+    // this is a hacky placeholder because by the time we call redirect the addMessage operation hasn't finished
+    // need to make this async
+    setTimeout(() => {
+        res.redirect(`/${req.body.id}`);
+    }, 2000);
 });
 
 // <- WEBSOCKETS ====================================== ->
 
-// we need to create a new message object on each submit
-// we need to grab the id from the current room
-// and push a reference to that in each message
+// we need to use websockets to append each new message to the chat window
+// every time addMessage is called, without having to refresh
 
 // <- LISTENER ====================================== ->
 

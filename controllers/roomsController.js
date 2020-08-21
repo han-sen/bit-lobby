@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Rooms = require("../models/rooms.js");
 const roomSeed = require("../models/roomSeed.js");
+const Message = require("../models/message.js");
 
 // SEED DB
 router.get("/seed", (req, res) => {
@@ -33,7 +34,7 @@ router.delete("/:id", (req, res) => {
     });
 });
 
-// Create
+// Create Room
 router.post("/", (req, res) => {
     req.body.privateRoom = req.body.privateRoom === "on" ? true : false;
     Rooms.create(req.body, (error, newRoom) => {
@@ -66,29 +67,16 @@ router.put("/:id", (req, res) => {
 });
 
 // SHOW
-// serve the selected chat room
-// router.get("/:id", (req, res) => {
-//     Rooms.findById(req.params.id, (error, foundRoom) => {
-//         if (error) {
-//             res.send(error.message);
-//         } else {
-//             const messages = foundRoom.messages;
-//             console.log(messages);
-//             res.render("Show", {
-//                 room: foundRoom,
-//                 messages: messages,
-//             });
-//         }
-//     });
-// });
-
 router.get("/:id", (req, res) => {
     Rooms.findOne({ _id: req.params.id })
+        // after we find room, we need to hyrdate/populate the document's messages
         .populate("messages")
-        .exec((err, roomWithMessages) => {
-            res.render("Show", {
-                room: roomWithMessages,
-            });
+        .exec((error, roomWithMessages) => {
+            error
+                ? res.send(error.message)
+                : res.render("Show", {
+                      room: roomWithMessages,
+                  });
         });
 });
 

@@ -25,7 +25,7 @@ const Show = (props) => {
                         <li>{user}</li>
                     ))}
                 </ul>
-                <Chat messages={messages} />
+                <Chat roomId={id} messages={messages} />
                 {!perma && <DeleteButton id={id}></DeleteButton>}
                 {!perma && (
                     <button>
