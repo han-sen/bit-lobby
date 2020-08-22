@@ -1,5 +1,5 @@
 const React = require("react");
-const Default = require("./components/Default");
+const Room = require("./components/Room");
 const Chat = require("./components/Chat");
 
 const Show = (props) => {
@@ -15,7 +15,7 @@ const Show = (props) => {
     } = props.room;
     const userName = props.userName;
     return (
-        <Default page={name}>
+        <Room page={name}>
             <div className="room_wrap">
                 <div className="room_controls">
                     <img className="room_img" src={img} />
@@ -31,7 +31,7 @@ const Show = (props) => {
                     )}
                     <p className="room_description">{description}</p>
                     <p>Active users:</p>
-                    <ul>
+                    <ul className="user_list">
                         {users.map((user) => (
                             <li key={user}>
                                 {user === "Lobby Bot" ? (
@@ -54,7 +54,7 @@ const Show = (props) => {
                 </div>
                 <Chat roomId={id} userName={userName} messages={messages} />
             </div>
-        </Default>
+        </Room>
     );
 };
 

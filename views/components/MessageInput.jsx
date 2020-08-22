@@ -4,7 +4,7 @@ const MessageInput = (props) => {
     const { userName, roomId } = props;
     return (
         <div className="input_wrap">
-            <form action="/messages" method="POST">
+            <form id="messageForm">
                 <input type="text" name="id" defaultValue={roomId} hidden />
                 <input
                     type="text"

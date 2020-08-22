@@ -8,7 +8,7 @@ const Index = (props) => {
             <div className="content_wrap">
                 <h1>Room List</h1>
                 <div className="room_list_wrap">
-                    <form action="/" method="GET">
+                    <form action="/" method="GET" id="roomSelect">
                         <div className="room_listing">
                             <label>User Name: </label>
                             <input type="text" name="userName" required />

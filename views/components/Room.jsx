@@ -1,7 +1,7 @@
 const React = require("react");
 const ThemeToggle = require("./ThemeToggle");
 
-const Default = (props) => {
+const Room = (props) => {
     return (
         <html>
             <head>
@@ -29,9 +29,11 @@ const Default = (props) => {
                 <ThemeToggle />
                 <div className="page_wrap">{props.children}</div>
                 <script src="/js/utils.js"></script>
+                <script src="/socket.io/socket.io.js"></script>
+                <script src="/js/main.js"></script>
             </body>
         </html>
     );
 };
 
-module.exports = Default;
+module.exports = Room;

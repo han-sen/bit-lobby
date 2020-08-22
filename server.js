@@ -53,28 +53,39 @@ const addMessage = (roomId, message) => {
     });
 };
 
-// Add Message
-app.post("/messages", (req, res) => {
-    addMessage(req.body.id, {
-        userName: req.body.userName || "Guest",
-        text: req.body.text,
-        createdAt: Date.now(),
-    });
-    // this is a hacky placeholder because by the time we call redirect the addMessage operation hasn't finished
-    // need to make this async
-    setTimeout(() => {
-        res.redirect(`/${req.body.id}`);
-    }, 1000);
-});
+// // Add Message
+// app.post("/messages", (req, res) => {
+//     addMessage(req.body.id, {
+//         userName: req.body.userName || "Guest",
+//         text: req.body.text,
+//         createdAt: Date.now(),
+//     });
+// });
 
 // <- WEBSOCKETS ====================================== ->
 
 io.on("connection", (socket) => {
     console.log("new WS connection");
-});
 
-// we need to use websockets to append each new message to the chat window
-// every time addMessage is called, without having to refresh
+    // welcomes new user
+    socket.emit("message", "Welcome to Bit Lobby");
+
+    // announces new user to others
+    socket.broadcast.emit("message", "A user has joined chat");
+
+    // notifies of a user leaving
+    socket.on("disconnect", () => {
+        // io.emit will emit to everybody
+        io.emit("message", "A user has left the chat");
+    });
+
+    // listen for chat message
+    socket.on("chatMessage", (roomId, msg) => {
+        console.log(msg);
+        addMessage(roomId, msg);
+        io.emit("message", msg);
+    });
+});
 
 // <- LISTENER ====================================== ->
 

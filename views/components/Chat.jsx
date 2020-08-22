@@ -7,7 +7,7 @@ const Chat = (props) => {
     return (
         <div className="chat_wrap">
             <div className="messages_wrap">
-                <ul>
+                <ul id="message_list">
                     {messages.map((message, i) => {
                         return (
                             <li key={i}>
