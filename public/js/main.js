@@ -28,6 +28,7 @@ messageForm.addEventListener("submit", (e) => {
     socket.emit("chatMessage", roomId, messagePayload);
     // reset the message input
     e.target.elements.text.value = "";
+    e.target.elements.text.focus();
 });
 
 // in addition to submitting to our DB
