@@ -1,9 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;500;700&display=swap");
+
 /************ GLOBAL STYLES ************/
 
 :root {
     --green-light: #92e7c9;
     --green-med: #67d1ac;
     --green-dark: #41b38b;
+    --green-opaque: rgb(167 236 212 / 0.5);
     --blue-light: #97bfe5;
     --blue-med: #6d9ece;
     --blue-dark: #487cae;
@@ -23,7 +26,9 @@ li {
 }
 
 h1 {
+    font-family: "Roboto Mono", monospace;
     font-weight: 700;
+    font-size: 1.5em;
 }
 
 h2 {
@@ -31,12 +36,16 @@ h2 {
 }
 
 .fas {
-    margin-right: 0.25em;
-    color: var(--green-light);
+    margin: 0 0.25em;
+    color: inherit;
 }
 
 .fa-database {
     color: var(--blue-light);
+}
+
+.fa-user {
+    color: var(--green-light);
 }
 
 /************ ELEMENT STYLES ************/
@@ -47,10 +56,19 @@ h2 {
 
 .room_wrap {
     display: flex;
+    justify-content: center;
+}
+
+input[name="userName"] {
+    flex: 1;
 }
 
 .room_list_wrap {
     max-width: 300px;
+}
+
+.room_list_wrap button {
+    width: 100%;
 }
 
 .room_listing {
@@ -60,19 +78,28 @@ h2 {
 
 .room_controls {
     padding: 0 1em;
+    margin-right: 2em;
 }
 
 .room_controls ul {
     padding: 0;
 }
 
+.room_privacy {
+    font-size: 0.8em;
+    opacity: 0.5;
+}
+
 .room_img {
     max-width: 200px;
+    box-shadow: 4px 4px #eeeeee;
+    border: 1px solid black;
 }
 
 .chat_wrap {
     border: 1px solid black;
     width: 600px;
+    box-shadow: 4px 4px #efefef;
 }
 
 .messages_wrap {
@@ -92,6 +119,7 @@ h2 {
 .message_time {
     font-size: 0.6em;
     margin-left: 0.5em;
+    opacity: 0.75;
 }
 
 .chat_wrap ul {
@@ -101,8 +129,8 @@ h2 {
 
 .chat_wrap li {
     margin: 0.25em;
-    padding: 0.25em;
-    background: #eee;
+    padding: 0.5em;
+    background: var(--green-opaque);
 }
 
 .input_wrap {
@@ -128,6 +156,6 @@ h2 {
 /************ DARK MODE STYLES ************/
 
 body.dark {
-    background: #071e3d;
+    background: #0b1a2f;
     color: var(--green-light);
 }

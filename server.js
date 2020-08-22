@@ -2,9 +2,13 @@
 
 const express = require("express");
 const mongoose = require("mongoose");
+const http = require("http");
+const socketio = require("socket.io");
 const methodOverride = require("method-override");
 require("dotenv").config();
 const app = express();
+const server = http.createServer(app);
+const io = socketio(server);
 const PORT = process.env.PORT || 3000;
 
 // <- DATA ======================================== ->
@@ -52,8 +56,7 @@ const addMessage = (roomId, message) => {
 // Add Message
 app.post("/messages", (req, res) => {
     addMessage(req.body.id, {
-        // still need to set userName dynamically, bring in query string?
-        userName: req.body.userName,
+        userName: req.body.userName || "Guest",
         text: req.body.text,
         createdAt: Date.now(),
     });
@@ -66,11 +69,15 @@ app.post("/messages", (req, res) => {
 
 // <- WEBSOCKETS ====================================== ->
 
+io.on("connection", (socket) => {
+    console.log("new WS connection");
+});
+
 // we need to use websockets to append each new message to the chat window
 // every time addMessage is called, without having to refresh
 
 // <- LISTENER ====================================== ->
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`Coming to you live on port: ${PORT}`);
 });

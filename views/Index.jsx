@@ -9,8 +9,10 @@ const Index = (props) => {
                 <h1>Room List</h1>
                 <div className="room_list_wrap">
                     <form action="/" method="GET">
-                        <label>User Name:</label>
-                        <input type="text" name="userName" />
+                        <div className="room_listing">
+                            <label>User Name: </label>
+                            <input type="text" name="userName" required />
+                        </div>
                         {rooms
                             .filter((room) => !room.privateRoom)
                             .map((room) => {
@@ -38,7 +40,7 @@ const Index = (props) => {
                                     </div>
                                 );
                             })}
-                        <button className="button primary" type="submit">
+                        <button className="button is-primary" type="submit">
                             JOIN
                         </button>
                     </form>

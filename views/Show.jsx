@@ -14,15 +14,22 @@ const Show = (props) => {
         messages,
     } = props.room;
     const userName = props.userName;
-    console.log(`at show username is: ${userName}`);
     return (
         <Default page={name}>
             <div className="room_wrap">
                 <div className="room_controls">
-                    <h1>{name}</h1>
-                    <p>{privateRoom ? "Private room" : "Public room"}</p>
-                    <p>{description}</p>
                     <img className="room_img" src={img} />
+                    <h1>{name}</h1>
+                    {privateRoom ? (
+                        <li className="room_privacy private">
+                            <i className="fas fa-eye-slash"></i>private room
+                        </li>
+                    ) : (
+                        <li className="room_privacy public">
+                            <i className="fas fa-eye"></i>public room
+                        </li>
+                    )}
+                    <p className="room_description">{description}</p>
                     <p>Active users:</p>
                     <ul>
                         {users.map((user) => (
