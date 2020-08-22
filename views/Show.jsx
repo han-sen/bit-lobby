@@ -1,6 +1,8 @@
 const React = require("react");
 const Room = require("./components/Room");
+const RoomDetails = require("./components/RoomDetails");
 const Chat = require("./components/Chat");
+const UserList = require("./components/UserList");
 
 const Show = (props) => {
     const {
@@ -19,30 +21,12 @@ const Show = (props) => {
             <div className="room_wrap">
                 <div className="room_controls">
                     <img className="room_img" src={img} />
-                    <h1>{name}</h1>
-                    {privateRoom ? (
-                        <li className="room_privacy private">
-                            <i className="fas fa-eye-slash"></i>private room
-                        </li>
-                    ) : (
-                        <li className="room_privacy public">
-                            <i className="fas fa-eye"></i>public room
-                        </li>
-                    )}
-                    <p className="room_description">{description}</p>
-                    <p>Active users:</p>
-                    <ul className="user_list">
-                        {users.map((user) => (
-                            <li key={user}>
-                                {user === "Lobby Bot" ? (
-                                    <i className="fas fa-database"></i>
-                                ) : (
-                                    <i className="fas fa-user"></i>
-                                )}
-                                {user}
-                            </li>
-                        ))}
-                    </ul>
+                    <RoomDetails
+                        name={name}
+                        description={description}
+                        privateRoom={privateRoom}
+                    />
+                    <UserList users={users} />
                     <button>
                         <a href="/">Home</a>
                     </button>

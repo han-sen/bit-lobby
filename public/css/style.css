@@ -92,14 +92,14 @@ input[name="userName"] {
 
 .room_img {
     max-width: 200px;
-    box-shadow: 4px 4px #eeeeee;
+    box-shadow: 0.25em 0.25em #eeeeee;
     border: 1px solid black;
 }
 
 .chat_wrap {
     border: 1px solid black;
     width: 600px;
-    box-shadow: 4px 4px #efefef;
+    box-shadow: 0.5em 0.5em #efefef;
 }
 
 .messages_wrap {
@@ -128,8 +128,9 @@ input[name="userName"] {
 }
 
 .chat_wrap li {
-    margin: 0.25em;
+    margin: 0.5em;
     padding: 0.5em;
+    border-radius: 0.25em;
     background: var(--green-opaque);
 }
 
@@ -158,4 +159,15 @@ input[name="userName"] {
 body.dark {
     background: #0b1a2f;
     color: var(--green-light);
+}
+
+/************ @ MEDIA QUERIES ************/
+
+@media screen and (max-width: 768px) {
+    .room_wrap {
+        flex-direction: column;
+    }
+    .room_controls {
+        display: flex;
+    }
 }

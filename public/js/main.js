@@ -2,10 +2,12 @@
 const socket = io();
 // const moment = require("moment");
 const messageForm = document.querySelector("#messageForm");
+const messageWrap = document.querySelector(".messages_wrap");
 
 socket.on("message", (message) => {
-    outputMessage(message);
-    console.log(message);
+    appendMessage(message);
+    // scroll chat wrap to bottom
+    messageWrap.scrollTop = messageWrap.scrollHeight;
 });
 
 // listen for when user has submitted join room form
@@ -24,9 +26,13 @@ messageForm.addEventListener("submit", (e) => {
     };
     // emit message to server
     socket.emit("chatMessage", roomId, messagePayload);
+    // reset the message input
+    e.target.elements.text.value = "";
 });
 
-const outputMessage = (messagePayload) => {
+// in addition to submitting to our DB
+// we need to immediately append the message to the DOM
+const appendMessage = (messagePayload) => {
     // build a new chat message to append to DOM
     const li = document.createElement("li");
     li.innerHTML = `<p class="message_name">

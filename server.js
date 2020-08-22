@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const http = require("http");
 const socketio = require("socket.io");
 const methodOverride = require("method-override");
+const moment = require("moment");
 require("dotenv").config();
 const app = express();
 const server = http.createServer(app);
@@ -68,22 +69,34 @@ io.on("connection", (socket) => {
     console.log("new WS connection");
 
     // welcomes new user
-    socket.emit("message", "Welcome to Bit Lobby");
+    socket.emit("message", {
+        userName: "Lobby Bot",
+        text: "Welcome to the room",
+        createdAt: moment(Date.now()).format("h:mm a"),
+    });
 
     // announces new user to others
-    socket.broadcast.emit("message", "A user has joined chat");
+    socket.broadcast.emit("message", {
+        userName: "Lobby Bot",
+        text: "A new user has joined the chat",
+        createdAt: moment(Date.now()).format("h:mm a"),
+    });
 
     // notifies of a user leaving
     socket.on("disconnect", () => {
         // io.emit will emit to everybody
-        io.emit("message", "A user has left the chat");
+        io.emit("message", {
+            userName: "Lobby Bot",
+            text: "A user has exited the chat",
+            createdAt: moment(Date.now()).format("h:mm a"),
+        });
     });
 
     // listen for chat message
-    socket.on("chatMessage", (roomId, msg) => {
-        console.log(msg);
-        addMessage(roomId, msg);
-        io.emit("message", msg);
+    socket.on("chatMessage", (roomId, message) => {
+        console.log(message);
+        addMessage(roomId, message);
+        io.emit("message", message);
     });
 });
 
