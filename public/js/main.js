@@ -1,18 +1,23 @@
 // <- SOCKET.IO FUNCTIONS ======================================== ->
 
+// DOM elements
+
 const socket = io();
 const messageForm = document.querySelector("#messageForm");
 const messageWrap = document.querySelector(".messages_wrap");
 const userList = document.querySelector(".user_list");
 
-// grab userName from our pre-populated form input
+// grab userName from our pre-populated form values
+
 const userName = messageForm.elements.userName.value || "Guest";
 const roomId = messageForm.elements.id.value;
 
-// emit this back to server for lobby bot
+// emit this back to server for lobby bot greeting
+
 socket.emit("joinRoom", { userName, roomId });
 
 // append new user to our DOMs userlist
+
 const appendUser = (userName, incomingUser) => {
     const li = document.createElement("li");
     li.classList.add("user_list_name");
@@ -20,13 +25,33 @@ const appendUser = (userName, incomingUser) => {
     userName === incomingUser
         ? (li.innerHTML = `<i class="fas fa-user"></i><strong>${incomingUser}</strong>`)
         : (li.innerHTML = `<i class="fas fa-user"></i>${incomingUser}`);
+    // set data attribute so we can target it for removal
+    li.setAttribute("data-name", incomingUser);
+    // add li to userlist
     userList.appendChild(li);
 };
 
 // listen for addUser event
+
 socket.on("addUser", (incomingUser) => {
     console.log("addUser triggered on client side");
     appendUser(userName, incomingUser);
+});
+
+// remove user from userlist in DOM
+
+const removeUser = (exitingUser) => {
+    const listItemToRemove = document.querySelector(
+        `[data-name=${exitingUser}]`
+    );
+    userList.removeChild(listItemToRemove);
+};
+
+// listen for remove user event
+
+socket.on("removeUser", (exitingUser) => {
+    console.log("removeUser triggered on client side");
+    removeUser(exitingUser);
 });
 
 // listen for new messages
@@ -59,8 +84,7 @@ messageForm.addEventListener("submit", (e) => {
     e.target.elements.text.focus();
 });
 
-// in addition to submitting to our DB
-// we need to immediately append the message to the DOM
+// function to live append the message to the DOM
 
 const appendMessage = (messagePayload) => {
     // build a new chat message to append to DOM

@@ -135,6 +135,8 @@ input[name="userName"] {
 
 .user_list_wrap {
     flex: 1;
+    overflow: scroll;
+    max-height: 12em;
 }
 
 .user_list_header {
