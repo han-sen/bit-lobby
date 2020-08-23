@@ -18,6 +18,7 @@ const MessageInput = (props) => {
                     className="input"
                     placeholder="Start typing..."
                     required
+                    autocomplete="off"
                 />
                 <button type="submit" className="button">
                     <i className="fas fa-paper-plane"></i> Send

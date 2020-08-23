@@ -14,6 +14,8 @@
     --orange-med: #ffa77d;
     --orange-dark: #ff925d;
     --black-med: #333431;
+    --grey-light: #eee;
+    --grey-med: #757575;
 }
 
 body {
@@ -48,6 +50,10 @@ h2 {
 
 button {
     cursor: pointer;
+}
+
+img {
+    background: var(--grey-med);
 }
 
 .fas {
@@ -116,15 +122,24 @@ input[name="userName"] {
     opacity: 0.5;
 }
 
+.fa-eye {
+    margin-left: 0;
+}
+
 .room_img {
-    max-width: 200px;
-    box-shadow: 0.25em 0.25em #eeeeee;
+    max-width: 10em;
+    box-shadow: 0.25em 0.25em var(--grey-light);
     border: 1px solid var(--black-med);
     border-radius: 0.25em;
 }
 
 .user_list_wrap {
     flex: 1;
+}
+
+.user_list_header {
+    font-weight: 700;
+    margin-bottom: 0.25em;
 }
 
 .user_list {
@@ -155,6 +170,7 @@ input[name="userName"] {
 .messages_wrap {
     height: 500px;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .message_name {
@@ -185,7 +201,7 @@ input[name="userName"] {
 }
 
 .chat_wrap li.lobby-bot {
-    background: #eee;
+    background: var(--grey-light);
 }
 
 .input_wrap {
@@ -205,6 +221,7 @@ input[name="userName"] {
     height: 2em;
     margin: 0;
     border: none;
+    border-left: 1px solid var(--black-med);
     padding: 0.25em;
     background: var(--green-light);
     border-radius: 0 0 0.25em 0;
@@ -215,13 +232,13 @@ input[name="userName"] {
 }
 
 .theme_wrap {
-    display: flex;
-    flex-direction: column;
-    margin-left: 2em;
+    position: absolute;
+    top: 1em;
+    right: 1em;
 }
 
 .theme_wrap button {
-    box-shadow: 0.125em 0.125em #eee;
+    box-shadow: 0.25em 0.25em var(--grey-light);
 }
 
 .theme_wrap button.is-active {
@@ -236,7 +253,7 @@ input[name="userName"] {
     padding: 0.25em;
     margin: 0;
     border: 1px solid var(--black-med);
-    border-bottom: none;
+    border-right: none;
     border-radius: 0.125em 0.125em 0 0;
 }
 
@@ -249,14 +266,17 @@ input[name="userName"] {
 
 footer {
     width: 100%;
-    background: #eee;
-    color: var(--black-med);
-    padding: 1em;
+    background: var(--black-med);
+    padding: 0.5em;
     text-align: center;
 }
 
 footer a {
-    color: var(--black-med);
+    color: var(--grey-light);
+}
+
+footer a:hover {
+    color: var(--blue-light);
 }
 
 /************ DARK MODE STYLES ************/

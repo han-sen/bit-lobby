@@ -18,10 +18,12 @@ module.exports = [
         users: ["Lobby Bot", "Snake Charmer", "Lil Tuple"],
     },
     {
-        name: "goland",
-        description: "All things Go",
+        name: "ruby",
+        description: "Goin off the rails",
+        img:
+            "https://cdn.cognizantsoftvision.com/wp-content/uploads/2017/09/05232731/1-9hd_8qR0CMZ8L0pVbFLjDw.png",
         privateRoom: false,
         perma: true,
-        users: ["Lobby Bot", "Gopher Dude"],
+        users: ["Lobby Bot", "Conductor"],
     },
 ];

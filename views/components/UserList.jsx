@@ -3,7 +3,7 @@ const React = require("react");
 const UserList = (props) => {
     return (
         <div className="user_list_wrap">
-            <p>Active users:</p>
+            <p className="user_list_header">Active Users:</p>
             <ul className="user_list">
                 {props.users.map((user) => (
                     <li className="user_list_name" key={user}>
