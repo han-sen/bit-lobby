@@ -62,11 +62,26 @@ const addUser = (roomId, userName) => {
     Rooms.findByIdAndUpdate(
         roomId,
         { $push: { users: userName } },
-        { new: true, useFindAndModify: false }
+        { new: true, useFindAndModify: false },
+        (error, updatedRoom) => {
+            error ? console.log(error.message) : console.log(updatedRoom);
+        }
     );
 };
 
 // remove user from the room list
+
+const removeUser = (roomId, userName) => {
+    console.log(`removing ${userName} from ${roomId}`);
+    Rooms.findByIdAndUpdate(
+        roomId,
+        { $pull: { users: userName } },
+        { new: true, useFindAndModify: false },
+        (error, updatedRoom) => {
+            error ? console.log(error.message) : console.log(updatedRoom);
+        }
+    );
+};
 
 // format timestamps
 
@@ -82,6 +97,7 @@ io.on("connection", (socket) => {
     socket.on("joinRoom", (user) => {
         // set user to current room
         socket.join(user.roomId);
+        // add them to room's user array
         addUser(user.roomId, user.userName);
 
         // welcomes new user
@@ -100,7 +116,9 @@ io.on("connection", (socket) => {
 
         // notifies of a user leaving
         socket.on("disconnect", () => {
-            // io.emit will emit to everybody
+            // remove user from room array
+            removeUser(user.roomId, user.userName);
+            // announce user has left
             io.to(user.roomId).emit("message", {
                 userName: "Lobby Bot",
                 text: `<strong>${user.userName}</strong> has logged off`,

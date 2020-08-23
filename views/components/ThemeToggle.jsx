@@ -7,7 +7,7 @@ const ThemeToggle = () => {
                 <i class="fas fa-sun"></i>
             </button>
             <button id="darkTheme">
-                <i class="fas fa-star"></i>
+                <i className="fas fa-star"></i>
             </button>
         </div>
     );
