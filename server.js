@@ -42,6 +42,7 @@ app.use("/", roomsController);
 // <- UTILS ====================================== ->
 
 // function to push new messages to their associated room
+
 const addMessage = (roomId, message) => {
     // first we create a new message
     return Message.create(message).then((newMessage) => {
@@ -54,49 +55,50 @@ const addMessage = (roomId, message) => {
     });
 };
 
-// // Add Message
-// app.post("/messages", (req, res) => {
-//     addMessage(req.body.id, {
-//         userName: req.body.userName || "Guest",
-//         text: req.body.text,
-//         createdAt: Date.now(),
-//     });
-// });
+const formatTime = (time) => {
+    return moment(time).format("h:mm a");
+};
 
 // <- WEBSOCKETS ====================================== ->
 
 io.on("connection", (socket) => {
-    console.log("new WS connection");
+    console.log("<_ new socket connection _>");
 
-    // welcomes new user
-    socket.emit("message", {
-        userName: "Lobby Bot",
-        text: "Welcome to the room",
-        createdAt: moment(Date.now()).format("h:mm a"),
-    });
+    socket.on("joinRoom", (user) => {
+        console.log(`at join roomId is ${user.roomId}`);
+        socket.join(user.roomId);
 
-    // announces new user to others
-    socket.broadcast.emit("message", {
-        userName: "Lobby Bot",
-        text: "A new user has joined the chat",
-        createdAt: moment(Date.now()).format("h:mm a"),
-    });
-
-    // notifies of a user leaving
-    socket.on("disconnect", () => {
-        // io.emit will emit to everybody
-        io.emit("message", {
+        // welcomes new user
+        socket.emit("message", {
             userName: "Lobby Bot",
-            text: "A user has exited the chat",
-            createdAt: moment(Date.now()).format("h:mm a"),
+            text: `Welcome to the room <strong>${user.userName}</strong>`,
+            createdAt: formatTime(Date.now()),
         });
-    });
 
-    // listen for chat message
-    socket.on("chatMessage", (roomId, message) => {
-        console.log(message);
-        addMessage(roomId, message);
-        io.emit("message", message);
+        // announces new user to others
+        socket.broadcast.to(user.roomId).emit("message", {
+            userName: "Lobby Bot",
+            text: `<strong>${user.userName}</strong> has logged in`,
+            createdAt: formatTime(Date.now()),
+        });
+
+        // notifies of a user leaving
+        socket.on("disconnect", () => {
+            // io.emit will emit to everybody
+            io.to(user.roomId).emit("message", {
+                userName: "Lobby Bot",
+                text: "A user has exited the chat",
+                createdAt: formatTime(Date.now()),
+            });
+        });
+
+        // listen for chat message
+        socket.on("chatMessage", (roomId, message) => {
+            message.createdAt = formatTime(message.createdAt);
+            console.log(message);
+            addMessage(roomId, message);
+            io.to(user.roomId).emit("message", message);
+        });
     });
 });
 

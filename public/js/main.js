@@ -1,24 +1,35 @@
 // <- SOCKET.IO FUNCTIONS ======================================== ->
+
 const socket = io();
 // const moment = require("moment");
 const messageForm = document.querySelector("#messageForm");
 const messageWrap = document.querySelector(".messages_wrap");
 
+// grab userName from our pre-populated form input
+const userName = messageForm.elements.userName.value;
+const roomId = messageForm.elements.id.value;
+
+// emit this back to server for lobby bot
+socket.emit("joinRoom", { userName, roomId });
+
+console.log(userName, roomId);
+
 socket.on("message", (message) => {
     appendMessage(message);
-    // scroll chat wrap to bottom
+    // scroll chat wrap to bottom on each new message
     messageWrap.scrollTop = messageWrap.scrollHeight;
 });
 
-// listen for when user has submitted join room form
+// listen for when user has submitted message form
+
 messageForm.addEventListener("submit", (e) => {
     // stop the form from redirecting
     e.preventDefault();
-    // extract variables form submit
+    // extract values from form submit
     const roomId = e.target.elements.id.value;
     const userName = e.target.elements.userName.value || "Guest";
     const message = e.target.elements.text.value;
-    // construct them into our data schema
+    // construct them into our message schema
     const messagePayload = {
         userName: userName,
         text: message,
@@ -33,6 +44,7 @@ messageForm.addEventListener("submit", (e) => {
 
 // in addition to submitting to our DB
 // we need to immediately append the message to the DOM
+
 const appendMessage = (messagePayload) => {
     // build a new chat message to append to DOM
     const li = document.createElement("li");

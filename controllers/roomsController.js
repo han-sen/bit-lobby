@@ -7,6 +7,7 @@ const Message = require("../models/message.js");
 
 // SEED DB
 router.get("/seed", (req, res) => {
+    Message.deleteMany({}, () => {});
     Rooms.deleteMany({}, () => {});
     Rooms.create(roomSeed, (error, data) => {
         error ? res.status(400).json(error) : res.redirect("/");

@@ -139,19 +139,21 @@ input[name="userName"] {
 }
 
 .input_wrap input[type="text"] {
-    width: 90%;
+    width: 85%;
     height: 2em;
     margin: 0;
     border: none;
-    padding: 0;
+    padding: 0.25em;
 }
 
-.input_wrap input[type="submit"] {
-    width: 10%;
+.input_wrap button[type="submit"] {
+    width: 15%;
     height: 2em;
     margin: 0;
     border: none;
-    padding: 0;
+    padding: 0.25em;
+    background: var(--green-light);
+    border-radius: 0;
 }
 
 /************ DARK MODE STYLES ************/

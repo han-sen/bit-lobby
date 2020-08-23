@@ -12,8 +12,16 @@ const MessageInput = (props) => {
                     defaultValue={userName}
                     hidden
                 />
-                <input type="text" name="text" placeholder="Start typing..." />
-                <input type="submit" name="" defaultValue="Send" />
+                <input
+                    type="text"
+                    name="text"
+                    className="input"
+                    placeholder="Start typing..."
+                    required
+                />
+                <button type="submit" className="button">
+                    <i className="fas fa-paper-plane"></i> Send
+                </button>
             </form>
         </div>
     );

@@ -18,6 +18,9 @@ const Show = (props) => {
     const userName = props.userName;
     return (
         <Room page={name}>
+            <a href="/">
+                <h1>Bit Lobby</h1>
+            </a>
             <div className="room_wrap">
                 <div className="room_controls">
                     <img className="room_img" src={img} />
@@ -27,9 +30,6 @@ const Show = (props) => {
                         privateRoom={privateRoom}
                     />
                     <UserList users={users} />
-                    <button>
-                        <a href="/">Home</a>
-                    </button>
                     {!perma && (
                         <button>
                             <a href={`/${id}/edit`}>Edit</a>

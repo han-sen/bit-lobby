@@ -1,6 +1,5 @@
 const React = require("react");
 const MessageInput = require("./MessageInput");
-const moment = require("moment");
 
 const Chat = (props) => {
     const { roomId, userName, messages } = props;
@@ -14,9 +13,7 @@ const Chat = (props) => {
                                 <p className="message_name">
                                     {message.userName}
                                     <span className="message_time">
-                                        {moment(message.createdAt).format(
-                                            "h:mm a"
-                                        )}
+                                        {message.createdAt}
                                     </span>
                                 </p>
                                 <p className="message_text"> {message.text}</p>
