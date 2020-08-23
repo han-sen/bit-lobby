@@ -1,5 +1,4 @@
 const React = require("react");
-const ThemeToggle = require("./ThemeToggle");
 
 const Room = (props) => {
     return (
@@ -26,7 +25,6 @@ const Room = (props) => {
                 ></script>
             </head>
             <body>
-                <ThemeToggle />
                 <div className="page_wrap">{props.children}</div>
                 <script src="/js/utils.js"></script>
                 <script src="/socket.io/socket.io.js"></script>

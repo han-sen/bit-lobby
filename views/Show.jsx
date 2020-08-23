@@ -3,6 +3,8 @@ const Room = require("./components/Room");
 const RoomDetails = require("./components/RoomDetails");
 const Chat = require("./components/Chat");
 const UserList = require("./components/UserList");
+const Footer = require("./components/Footer");
+const ThemeToggle = require("./components/ThemeToggle");
 
 const Show = (props) => {
     const {
@@ -21,7 +23,7 @@ const Show = (props) => {
             <a href="/">
                 <h1>Bit Lobby</h1>
             </a>
-            <div className="room_wrap">
+            <div className="room_wrap fade-in-up">
                 <div className="room_controls">
                     <img className="room_img" src={img} />
                     <RoomDetails
@@ -37,7 +39,9 @@ const Show = (props) => {
                     )}
                 </div>
                 <Chat roomId={id} userName={userName} messages={messages} />
+                <ThemeToggle />
             </div>
+            <Footer />
         </Room>
     );
 };

@@ -47,7 +47,11 @@ router.put("/:id", (req, res) => {
         req.body,
         { new: true },
         (error, updatedRoom) => {
-            error ? res.send(error.message) : res.redirect(`/${req.params.id}`);
+            error
+                ? res.send(error.message)
+                : res.redirect(
+                      `/${req.params.id}?userName=${req.body.userName}`
+                  );
         }
     );
 });
@@ -56,7 +60,9 @@ router.put("/:id", (req, res) => {
 router.post("/", (req, res) => {
     req.body.privateRoom = req.body.privateRoom === "on" ? true : false;
     Rooms.create(req.body, (error, newRoom) => {
-        error ? res.send(error.message) : res.redirect(`/${newRoom._id}`);
+        error
+            ? res.send(error.message)
+            : res.redirect(`/${newRoom._id}?userName=${req.body.userName}`);
     });
 });
 
@@ -73,9 +79,7 @@ router.get("/:id/edit", (req, res) => {
 
 // SHOW
 router.get("/:id", (req, res) => {
-    const roomId = req.params.id;
-    const userName = req.query.userName;
-    Rooms.findOne({ _id: roomId })
+    Rooms.findOne({ _id: req.params.id })
         // after we find room, we need to hyrdate/populate the document's messages
         .populate("messages")
         .exec((error, roomWithMessages) => {
@@ -83,7 +87,7 @@ router.get("/:id", (req, res) => {
                 ? res.send(error.message)
                 : res.render("Show", {
                       room: roomWithMessages,
-                      userName: userName,
+                      userName: req.query.userName,
                   });
         });
 });

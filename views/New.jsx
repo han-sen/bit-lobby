@@ -7,6 +7,8 @@ const New = () => {
             <div>
                 <h2>NEW PAGE</h2>
                 <form action="/" method="POST">
+                    User Name: <input type="text" name="userName" required />
+                    <br />
                     Room Name: <input type="text" name="name" required />
                     <br />
                     Description:{" "}

@@ -13,12 +13,23 @@
     --orange-light: #ffc0a1;
     --orange-med: #ffa77d;
     --orange-dark: #ff925d;
+    --black-med: #333431;
 }
 
 body {
     margin: 0;
+    color: var(--black-med);
     min-height: 100vh;
     transition: all 0.2s ease;
+}
+
+a {
+    color: inherit;
+}
+
+a:focus,
+button:focus {
+    outline: none;
 }
 
 li {
@@ -33,6 +44,10 @@ h1 {
 
 h2 {
     font-weight: 700;
+}
+
+button {
+    cursor: pointer;
 }
 
 .fas {
@@ -51,12 +66,19 @@ h2 {
 /************ ELEMENT STYLES ************/
 
 .page_wrap {
-    padding: 1em;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .room_wrap {
     display: flex;
     justify-content: center;
+    animation: fade-in 1s cubic-bezier(0.5, 1, 0.89, 1) forwards;
 }
 
 input[name="userName"] {
@@ -79,10 +101,14 @@ input[name="userName"] {
 .room_controls {
     padding: 0 1em;
     margin-right: 2em;
+    display: flex;
+    flex-direction: column;
 }
 
-.room_controls ul {
-    padding: 0;
+.room_name,
+.room_description,
+.user_list_wrap {
+    margin-top: 1em;
 }
 
 .room_privacy {
@@ -93,13 +119,37 @@ input[name="userName"] {
 .room_img {
     max-width: 200px;
     box-shadow: 0.25em 0.25em #eeeeee;
-    border: 1px solid black;
+    border: 1px solid var(--black-med);
+    border-radius: 0.25em;
+}
+
+.user_list_wrap {
+    flex: 1;
+}
+
+.user_list {
+    padding: 0;
+}
+
+.user_list_name {
+    display: flex;
+    align-items: center;
+}
+
+.user_list_name::before {
+    width: 0.5em;
+    height: 0.5em;
+    background: transparent;
+    border-left: 1px solid var(--blue-light);
+    border-bottom: 1px solid var(--blue-light);
+    content: "";
 }
 
 .chat_wrap {
-    border: 1px solid black;
+    border: 1px solid var(--black-med);
     width: 600px;
     box-shadow: 0.5em 0.5em #efefef;
+    border-radius: 0.25em;
 }
 
 .messages_wrap {
@@ -139,7 +189,7 @@ input[name="userName"] {
 }
 
 .input_wrap {
-    border-top: 1px solid black;
+    border-top: 1px solid var(--black-med);
 }
 
 .input_wrap input[type="text"] {
@@ -157,7 +207,56 @@ input[name="userName"] {
     border: none;
     padding: 0.25em;
     background: var(--green-light);
-    border-radius: 0;
+    border-radius: 0 0 0.25em 0;
+}
+
+.input_wrap button[type="submit"]:hover {
+    background: var(--green-med);
+}
+
+.theme_wrap {
+    display: flex;
+    flex-direction: column;
+    margin-left: 2em;
+}
+
+.theme_wrap button {
+    box-shadow: 0.125em 0.125em #eee;
+}
+
+.theme_wrap button.is-active {
+    background: var(--green-light);
+}
+
+.theme_wrap i {
+    padding: 0.25em 0;
+}
+
+#lightTheme {
+    padding: 0.25em;
+    margin: 0;
+    border: 1px solid var(--black-med);
+    border-bottom: none;
+    border-radius: 0.125em 0.125em 0 0;
+}
+
+#darkTheme {
+    padding: 0.25em;
+    margin: 0;
+    border: 1px solid var(--black-med);
+    border-radius: 0 0 0.125em 0.125em;
+}
+
+footer {
+    width: 100%;
+    background: #eee;
+    color: var(--black-med);
+    padding: 2em;
+    text-align: center;
+}
+
+footer a {
+    color: var(--black-med);
 }
 
 /************ DARK MODE STYLES ************/
@@ -174,6 +273,38 @@ body.dark {
         flex-direction: column;
     }
     .room_controls {
-        display: flex;
+        flex-direction: row;
+    }
+}
+
+/************ ANIMATIONS ************/
+
+.fade-in {
+    animation: slide-in 1s cubic-bezier(0.5, 1, 0.89, 1) forwards;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.slide-in {
+    animation: slide-in 0.5s cubic-bezier(0.5, 1, 0.89, 1) forwards;
+}
+
+@keyframes slide-in {
+    from {
+        opacity: 0;
+        -webkit-transform: translateX(40px);
+        transform: translateX(40px);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: translateX(0px);
+        transform: translateX(0px);
     }
 }

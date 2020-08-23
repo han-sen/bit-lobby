@@ -41,7 +41,7 @@ app.use("/", roomsController);
 
 // <- UTILS ====================================== ->
 
-// function to push new messages to their associated room
+// push new messages to their associated room
 
 const addMessage = (roomId, message) => {
     // first we create a new message
@@ -55,6 +55,21 @@ const addMessage = (roomId, message) => {
     });
 };
 
+// push new users to the room list
+
+const addUser = (roomId, userName) => {
+    console.log(`adding ${userName} to ${roomId}`);
+    Rooms.findByIdAndUpdate(
+        roomId,
+        { $push: { users: userName } },
+        { new: true, useFindAndModify: false }
+    );
+};
+
+// remove user from the room list
+
+// format timestamps
+
 const formatTime = (time) => {
     return moment(time).format("h:mm a");
 };
@@ -65,8 +80,9 @@ io.on("connection", (socket) => {
     console.log("<_ new socket connection _>");
 
     socket.on("joinRoom", (user) => {
-        console.log(`at join roomId is ${user.roomId}`);
+        // set user to current room
         socket.join(user.roomId);
+        addUser(user.roomId, user.userName);
 
         // welcomes new user
         socket.emit("message", {

@@ -9,7 +9,10 @@ const Edit = (props) => {
             <div>
                 <h1>Edit Page</h1>
                 <form action={`/${id}?_method=PUT`} method="POST">
-                    Room Name: <input type="text" name="name" defaultValue={name} />
+                    User Name: <input type="text" name="userName" required />
+                    <br />
+                    Room Name:{" "}
+                    <input type="text" name="name" defaultValue={name} />
                     <br />
                     Description:
                     <input

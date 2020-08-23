@@ -1,9 +1,9 @@
 // <- SOCKET.IO FUNCTIONS ======================================== ->
 
 const socket = io();
-// const moment = require("moment");
 const messageForm = document.querySelector("#messageForm");
 const messageWrap = document.querySelector(".messages_wrap");
+const userList = document.querySelector(".user_list");
 
 // grab userName from our pre-populated form input
 const userName = messageForm.elements.userName.value || "Guest";
@@ -11,6 +11,15 @@ const roomId = messageForm.elements.id.value;
 
 // emit this back to server for lobby bot
 socket.emit("joinRoom", { userName, roomId });
+
+const appendUser = (userName) => {
+    const li = document.createElement("li");
+    li.classList.add("user_list_name");
+    li.innerHTML = `<i class="fas fa-user"></i>${userName}`;
+    userList.appendChild(li);
+};
+
+appendUser(userName);
 
 socket.on("message", (message) => {
     appendMessage(message);
@@ -49,6 +58,7 @@ const appendMessage = (messagePayload) => {
     // if its lobby bot, add a class so we can change color
     messagePayload.userName === "Lobby Bot" && li.classList.add("lobby-bot");
     // construct the new message for the DOM
+    li.classList.add("slide-in");
     li.innerHTML = `<p class="message_name">
             ${messagePayload.userName}
             <span class="message_time">
