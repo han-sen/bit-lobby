@@ -134,6 +134,10 @@ input[name="userName"] {
     background: var(--green-opaque);
 }
 
+.chat_wrap li.lobby-bot {
+    background: #eee;
+}
+
 .input_wrap {
     border-top: 1px solid black;
 }

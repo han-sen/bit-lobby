@@ -87,7 +87,7 @@ io.on("connection", (socket) => {
             // io.emit will emit to everybody
             io.to(user.roomId).emit("message", {
                 userName: "Lobby Bot",
-                text: "A user has exited the chat",
+                text: `<strong>${user.userName}</strong> has logged off`,
                 createdAt: formatTime(Date.now()),
             });
         });

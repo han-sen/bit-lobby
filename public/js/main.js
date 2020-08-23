@@ -6,13 +6,11 @@ const messageForm = document.querySelector("#messageForm");
 const messageWrap = document.querySelector(".messages_wrap");
 
 // grab userName from our pre-populated form input
-const userName = messageForm.elements.userName.value;
+const userName = messageForm.elements.userName.value || "Guest";
 const roomId = messageForm.elements.id.value;
 
 // emit this back to server for lobby bot
 socket.emit("joinRoom", { userName, roomId });
-
-console.log(userName, roomId);
 
 socket.on("message", (message) => {
     appendMessage(message);
@@ -48,6 +46,9 @@ messageForm.addEventListener("submit", (e) => {
 const appendMessage = (messagePayload) => {
     // build a new chat message to append to DOM
     const li = document.createElement("li");
+    // if its lobby bot, add a class so we can change color
+    messagePayload.userName === "Lobby Bot" && li.classList.add("lobby-bot");
+    // construct the new message for the DOM
     li.innerHTML = `<p class="message_name">
             ${messagePayload.userName}
             <span class="message_time">
