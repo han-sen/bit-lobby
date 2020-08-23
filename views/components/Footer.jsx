@@ -5,7 +5,8 @@ const Footer = () => {
         <footer>
             <a href="https://github.com/han-sen/bit-lobby">
                 <p>
-                    View this project on <i class="fab fa-github"></i> Github
+                    View this project on <i className="fab fa-github"></i>{" "}
+                    Github
                 </p>
             </a>
         </footer>

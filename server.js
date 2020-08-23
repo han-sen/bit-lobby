@@ -97,8 +97,10 @@ io.on("connection", (socket) => {
     socket.on("joinRoom", (user) => {
         // set user to current room
         socket.join(user.roomId);
-        // add them to room's user array
+        // add them to room's user array in db
         addUser(user.roomId, user.userName);
+
+        io.to(user.roomId).emit("addUser", user.userName);
 
         // welcomes new user
         socket.emit("message", {
@@ -113,6 +115,8 @@ io.on("connection", (socket) => {
             text: `<strong>${user.userName}</strong> has logged in`,
             createdAt: formatTime(Date.now()),
         });
+
+        // Send event to update userlist in DOM
 
         // notifies of a user leaving
         socket.on("disconnect", () => {

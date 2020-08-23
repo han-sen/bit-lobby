@@ -11,7 +11,7 @@ const RoomSelector = (props) => {
                         type="text"
                         name="userName"
                         required
-                        autocomplete="off"
+                        autoComplete="off"
                     />
                 </div>
                 {rooms

@@ -12,14 +12,24 @@ const roomId = messageForm.elements.id.value;
 // emit this back to server for lobby bot
 socket.emit("joinRoom", { userName, roomId });
 
-const appendUser = (userName) => {
+// append new user to our DOMs userlist
+const appendUser = (userName, incomingUser) => {
     const li = document.createElement("li");
     li.classList.add("user_list_name");
-    li.innerHTML = `<i class="fas fa-user"></i>${userName}`;
+    // bold our own username, but not others
+    userName === incomingUser
+        ? (li.innerHTML = `<i class="fas fa-user"></i><strong>${incomingUser}</strong>`)
+        : (li.innerHTML = `<i class="fas fa-user"></i>${incomingUser}`);
     userList.appendChild(li);
 };
 
-appendUser(userName);
+// listen for addUser event
+socket.on("addUser", (incomingUser) => {
+    console.log("addUser triggered on client side");
+    appendUser(userName, incomingUser);
+});
+
+// listen for new messages
 
 socket.on("message", (message) => {
     appendMessage(message);
