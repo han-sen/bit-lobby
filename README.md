@@ -1,3 +1,5 @@
+# 🚧 UNDER CONSTRUCTION 🚧
+
 # Bit Lobby
 
 Chat rooms for code talk.
