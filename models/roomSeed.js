@@ -26,4 +26,13 @@ module.exports = [
         perma: true,
         users: ["Lobby Bot", "Conductor"],
     },
+    {
+        name: "php",
+        description: "An elephant never forgets",
+        img:
+            "https://p1.hiclipart.com/preview/89/736/28/php-logo-modern-php-new-features-and-good-practices-computer-programming-scripting-language-computer-software-source-code-debugging-html-png-clipart.jpg",
+        privateRoom: false,
+        perma: true,
+        users: ["Lobby Bot", "Isset"],
+    },
 ];

@@ -31,12 +31,12 @@ const Show = (props) => {
                         description={description}
                         privateRoom={privateRoom}
                     />
-                    <UserList users={users} />
                     {!perma && (
                         <button>
                             <a href={`/${id}/edit`}>Edit</a>
                         </button>
                     )}
+                    <UserList users={users} />
                 </div>
                 <Chat roomId={id} userName={userName} messages={messages} />
                 <ThemeToggle />

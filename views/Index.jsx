@@ -9,11 +9,11 @@ const Index = (props) => {
     return (
         <Default page="Bit Lobby">
             <ThemeToggle />
-            <div className="content_wrap">
+            <div className="home_form_wrap fade-in">
                 <h1>Room List</h1>
                 <RoomSelector rooms={rooms} />
                 <a href="/new">
-                    <button className="button">Add a room</button>
+                    <button className="button room_add">Add a room</button>
                 </a>
             </div>
             <Footer />

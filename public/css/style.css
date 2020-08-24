@@ -16,6 +16,8 @@
     --black-med: #333431;
     --grey-light: #eee;
     --grey-med: #757575;
+    --night-blue: #0b1a2f;
+    --night-blue-light: #192b42;
 }
 
 body {
@@ -56,6 +58,10 @@ img {
     background: var(--grey-med);
 }
 
+strong {
+    color: inherit;
+}
+
 .fas {
     margin: 0 0.25em;
     color: inherit;
@@ -81,6 +87,13 @@ img {
     justify-content: space-between;
 }
 
+.home_form_wrap {
+    margin-top: 4em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .room_wrap {
     display: flex;
     justify-content: center;
@@ -88,20 +101,46 @@ img {
 }
 
 input[name="userName"] {
-    flex: 1;
+    border: none;
+    border-bottom: 1px solid var(--green-med);
+    border-radius: 0;
+    background: var(--green-opaque);
 }
 
 .room_list_wrap {
-    max-width: 300px;
+    width: 24em;
+    border: 1px solid var(--black-med);
+    padding: 3em;
+    margin: 2em 0;
+    border-radius: 0.25em;
 }
 
 .room_list_wrap button {
     width: 100%;
 }
 
+.room_user_name {
+    display: flex;
+    flex-direction: column;
+}
+
 .room_listing {
+    cursor: pointer;
     display: flex;
     justify-content: space-between;
+    margin: 1em 0;
+    border: 1px solid var(--black-med);
+    padding: 0.5em;
+    box-shadow: 0.25em 0.25em var(--grey-light);
+    border-radius: 0.25em;
+}
+
+.room_listing:hover {
+    background: var(--grey-light);
+}
+
+.room_grid i {
+    margin-left: 0.5em;
 }
 
 .room_controls {
@@ -284,8 +323,87 @@ footer a:hover {
 /************ DARK MODE STYLES ************/
 
 body.dark {
-    background: #0b1a2f;
+    background: var(--night-blue);
     color: var(--green-light);
+}
+
+body.dark input[name="userName"] {
+    color: var(--night-blue);
+}
+
+body.dark .room_listing {
+    border: 1px solid var(--blue-dark);
+    box-shadow: 0.25em 0.25em var(--green-opaque);
+}
+
+body.dark .room_listing:hover {
+    background: var(--night-blue-light);
+}
+
+body.dark .room_list_wrap {
+    border: 1px solid var(--blue-dark);
+    box-shadow: 0.25em 0.25em var(--night-blue-light);
+}
+
+body.dark .button.is-primary {
+    background-color: var(--green-opaque);
+    color: var(--night-blue);
+}
+
+body.dark .button.is-primary:hover {
+    background-color: var(--night-blue-light);
+    border: 1px solid var(--blue-light);
+    color: var(--green-light);
+}
+
+body.dark footer {
+    background: var(--blue-dark);
+}
+
+body.dark .fa-user {
+    color: var(--green-opaque);
+    opacity: 0.5;
+}
+
+body.dark button.room_add {
+    background: var(--blue-light);
+    border-color: var(--blue-light);
+}
+
+body.dark button.room_add:hover {
+    background: var(--night-blue-light);
+    border: 1px solid var(--blue-light);
+    color: var(--blue-light);
+}
+
+body.dark .theme_wrap button {
+    box-shadow: 0.25em 0.25em var(--black-med);
+}
+
+body.dark .chat_wrap {
+    box-shadow: 0.5em 0.5em var(--night-blue-light);
+    border: 1px solid var(--green-opaque);
+}
+
+body.dark .chat_wrap li {
+    background: var(--night-blue);
+    border: 1px solid var(--green-opaque);
+}
+
+body.dark .chat_wrap li.lobby-bot {
+    border: 1px solid var(--blue-light);
+    color: var(--blue-light);
+}
+
+body.dark .input_wrap .input[type="text"] {
+    background: var(--night-blue-light);
+    border-radius: 0 0 0 0.25em;
+    border-top: 1px solid var(--green-med);
+}
+
+body.dark .input_wrap button[type="submit"] {
+    background: var(--green-med);
+    border: 1px solid var(--green-med);
 }
 
 /************ @ MEDIA QUERIES ************/
@@ -302,7 +420,7 @@ body.dark {
 /************ ANIMATIONS ************/
 
 .fade-in {
-    animation: slide-in 1s cubic-bezier(0.5, 1, 0.89, 1) forwards;
+    animation: fade-in 1s cubic-bezier(0.5, 1, 0.89, 1) forwards;
 }
 
 @keyframes fade-in {

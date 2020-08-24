@@ -5,11 +5,12 @@ const RoomSelector = (props) => {
     return (
         <div className="room_list_wrap">
             <form action="/" method="GET" id="roomSelect">
-                <div className="room_listing">
+                <div className="room_user_name">
                     <label>User Name: </label>
                     <input
                         type="text"
                         name="userName"
+                        className="input"
                         required
                         autoComplete="off"
                     />
@@ -23,6 +24,7 @@ const RoomSelector = (props) => {
                                     <input
                                         type="radio"
                                         name="room"
+                                        className="checkbox"
                                         defaultValue={room._id}
                                     />
                                 </div>

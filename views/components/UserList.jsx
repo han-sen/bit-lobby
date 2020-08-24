@@ -6,7 +6,7 @@ const UserList = (props) => {
             <p className="user_list_header">Active Users:</p>
             <ul className="user_list">
                 {props.users.map((user) => (
-                    <li className="user_list_name" key={user}>
+                    <li className="user_list_name" key={user} data-name={user}>
                         {user === "Lobby Bot" ? (
                             <i className="fas fa-database"></i>
                         ) : (

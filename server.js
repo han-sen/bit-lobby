@@ -64,7 +64,7 @@ const addUser = (roomId, userName) => {
         { $push: { users: userName } },
         { new: true, useFindAndModify: false },
         (error, updatedRoom) => {
-            error ? console.log(error.message) : console.log(updatedRoom);
+            error ? console.log(error.message) : console.log(updatedRoom.users);
         }
     );
 };
