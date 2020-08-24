@@ -32,7 +32,7 @@ const Show = (props) => {
                         privateRoom={privateRoom}
                     />
                     {!perma && (
-                        <button>
+                        <button className="edit_button">
                             <a href={`/${id}/edit`}>Edit</a>
                         </button>
                     )}

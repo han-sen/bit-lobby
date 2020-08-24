@@ -12,6 +12,8 @@ const RoomSelector = (props) => {
                         name="userName"
                         className="input"
                         required
+                        minLength="1"
+                        maxLength="16"
                         autoComplete="off"
                     />
                 </div>

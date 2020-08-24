@@ -24,7 +24,7 @@ module.exports = [
             "https://cdn.cognizantsoftvision.com/wp-content/uploads/2017/09/05232731/1-9hd_8qR0CMZ8L0pVbFLjDw.png",
         privateRoom: false,
         perma: true,
-        users: ["Lobby Bot", "Conductor"],
+        users: ["Lobby Bot", "RORie"],
     },
     {
         name: "php",
@@ -33,6 +33,6 @@ module.exports = [
             "https://p1.hiclipart.com/preview/89/736/28/php-logo-modern-php-new-features-and-good-practices-computer-programming-scripting-language-computer-software-source-code-debugging-html-png-clipart.jpg",
         privateRoom: false,
         perma: true,
-        users: ["Lobby Bot", "Isset"],
+        users: ["Lobby Bot", "WP Guru"],
     },
 ];

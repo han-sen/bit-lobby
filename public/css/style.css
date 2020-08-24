@@ -24,6 +24,8 @@ body {
     margin: 0;
     color: var(--black-med);
     min-height: 100vh;
+    -webkit-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
     transition: all 0.2s ease;
 }
 
@@ -81,22 +83,43 @@ strong {
     height: 100vh;
     margin: 0;
     padding: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
 }
 
 .home_form_wrap {
     margin-top: 4em;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
 }
 
 .room_wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-animation: fade-in 1s cubic-bezier(0.5, 1, 0.89, 1) forwards;
     animation: fade-in 1s cubic-bezier(0.5, 1, 0.89, 1) forwards;
 }
 
@@ -120,17 +143,27 @@ input[name="userName"] {
 }
 
 .room_user_name {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
 }
 
 .room_listing {
     cursor: pointer;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
     margin: 1em 0;
     border: 1px solid var(--black-med);
     padding: 0.5em;
+    -webkit-box-shadow: 0.25em 0.25em var(--grey-light);
     box-shadow: 0.25em 0.25em var(--grey-light);
     border-radius: 0.25em;
 }
@@ -146,8 +179,14 @@ input[name="userName"] {
 .room_controls {
     padding: 0 1em;
     margin-right: 2em;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    max-width: 12em;
 }
 
 .room_name,
@@ -167,12 +206,19 @@ input[name="userName"] {
 
 .room_img {
     max-width: 10em;
+    -webkit-box-shadow: 0.25em 0.25em var(--grey-light);
     box-shadow: 0.25em 0.25em var(--grey-light);
     border: 1px solid var(--black-med);
     border-radius: 0.25em;
 }
 
+.edit_button {
+    margin-top: 0.5em;
+}
+
 .user_list_wrap {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
     flex: 1;
     overflow: scroll;
     max-height: 12em;
@@ -188,7 +234,11 @@ input[name="userName"] {
 }
 
 .user_list_name {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
 }
 
@@ -204,6 +254,7 @@ input[name="userName"] {
 .chat_wrap {
     border: 1px solid var(--black-med);
     width: 600px;
+    -webkit-box-shadow: 0.5em 0.5em #efefef;
     box-shadow: 0.5em 0.5em #efefef;
     border-radius: 0.25em;
 }
@@ -279,6 +330,7 @@ input[name="userName"] {
 }
 
 .theme_wrap button {
+    -webkit-box-shadow: 0.25em 0.25em var(--grey-light);
     box-shadow: 0.25em 0.25em var(--grey-light);
 }
 
@@ -333,6 +385,7 @@ body.dark input[name="userName"] {
 
 body.dark .room_listing {
     border: 1px solid var(--blue-dark);
+    -webkit-box-shadow: 0.25em 0.25em var(--green-opaque);
     box-shadow: 0.25em 0.25em var(--green-opaque);
 }
 
@@ -342,6 +395,7 @@ body.dark .room_listing:hover {
 
 body.dark .room_list_wrap {
     border: 1px solid var(--blue-dark);
+    -webkit-box-shadow: 0.25em 0.25em var(--night-blue-light);
     box-shadow: 0.25em 0.25em var(--night-blue-light);
 }
 
@@ -377,10 +431,12 @@ body.dark button.room_add:hover {
 }
 
 body.dark .theme_wrap button {
+    -webkit-box-shadow: 0.25em 0.25em var(--black-med);
     box-shadow: 0.25em 0.25em var(--black-med);
 }
 
 body.dark .chat_wrap {
+    -webkit-box-shadow: 0.5em 0.5em var(--night-blue-light);
     box-shadow: 0.5em 0.5em var(--night-blue-light);
     border: 1px solid var(--green-opaque);
 }
@@ -410,9 +466,15 @@ body.dark .input_wrap button[type="submit"] {
 
 @media screen and (max-width: 768px) {
     .room_wrap {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
         flex-direction: column;
     }
     .room_controls {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
         flex-direction: row;
     }
 }
@@ -420,7 +482,17 @@ body.dark .input_wrap button[type="submit"] {
 /************ ANIMATIONS ************/
 
 .fade-in {
+    -webkit-animation: fade-in 1s cubic-bezier(0.5, 1, 0.89, 1) forwards;
     animation: fade-in 1s cubic-bezier(0.5, 1, 0.89, 1) forwards;
+}
+
+@-webkit-keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes fade-in {
@@ -433,7 +505,21 @@ body.dark .input_wrap button[type="submit"] {
 }
 
 .slide-in {
+    -webkit-animation: slide-in 0.5s cubic-bezier(0.5, 1, 0.89, 1) forwards;
     animation: slide-in 0.5s cubic-bezier(0.5, 1, 0.89, 1) forwards;
+}
+
+@-webkit-keyframes slide-in {
+    from {
+        opacity: 0;
+        -webkit-transform: translateX(40px);
+        transform: translateX(40px);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: translateX(0px);
+        transform: translateX(0px);
+    }
 }
 
 @keyframes slide-in {
