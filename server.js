@@ -86,7 +86,7 @@ const removeUser = (roomId, userName) => {
 // format timestamps
 
 const formatTime = (time) => {
-    return moment(time).format("h:mm a");
+    return moment(time).local().format("h:mm a");
 };
 
 // <- WEBSOCKETS ====================================== ->
