@@ -11,6 +11,7 @@
     --green-med: #67d1ac;
     --green-dark: #41b38b;
     --green-opaque: rgb(167 236 212 / 0.5);
+    --green-system: #0bd2b2;
     --blue-light: #97bfe5;
     --blue-med: #6d9ece;
     --blue-dark: #487cae;
@@ -19,7 +20,7 @@
     --orange-dark: #ff925d;
     --black-med: #333431;
     --grey-light: #eee;
-    --grey-med: #757575;
+    --grey-med: #bdbdbd;
     --night-blue: #0b1a2f;
     --night-blue-light: #192b42;
 }
@@ -144,7 +145,7 @@ button.room_add {
 button.room_add:hover {
     border: none;
     color: white;
-    background: var(--green-med);
+    background: var(--green-system);
 }
 
 .room_listing_wrap {
@@ -160,6 +161,7 @@ button.room_add:hover {
     padding: 3em;
     margin: 2em 0;
     border-radius: 0.25em;
+    box-shadow: 1em 1em var(--grey-light);
 }
 
 .room_list_wrap button {
@@ -217,6 +219,21 @@ button.room_add:hover {
 .room_description,
 .user_list_wrap {
     margin-top: 1em;
+}
+
+.room_link {
+    cursor: pointer;
+    color: var(--grey-med);
+    font-size: 0.8em;
+}
+
+.room_link:hover {
+    color: var(--black-med);
+}
+
+#room_link_text {
+    position: absolute;
+    left: -99999px;
 }
 
 .room_privacy {
@@ -448,6 +465,10 @@ body.dark .room_listing:hover {
     background: var(--night-blue-light);
 }
 
+body.dark .room_img {
+    box-shadow: 0.25em 0.25em var(--night-blue-light);
+}
+
 body.dark .room_list_wrap {
     border: 1px solid var(--blue-dark);
     -webkit-box-shadow: 0.25em 0.25em var(--night-blue-light);
@@ -617,5 +638,15 @@ body.dark .input_wrap button[type="submit"] {
         opacity: 1;
         -webkit-transform: translateX(0px);
         transform: translateX(0px);
+    }
+}
+
+.spin {
+    animation: spin 0.5s cubic-bezier(0.5, 1, 0.89, 1);
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
     }
 }
