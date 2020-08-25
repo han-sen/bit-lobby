@@ -1,6 +1,7 @@
 const React = require("react");
 const Default = require("./components/Default");
 const ThemeToggle = require("./components/ThemeToggle");
+const Logo = require("./components/Logo");
 const RoomSelector = require("./components/RoomSelector");
 const Footer = require("./components/Footer");
 
@@ -10,7 +11,8 @@ const Index = (props) => {
         <Default page="Bit Lobby">
             <ThemeToggle />
             <div className="home_form_wrap fade-in">
-                <h1>Bit Lobby</h1>
+                {/* <img src="/img/bit-lobby-logo.svg" className="bit_logo" /> */}
+                <Logo />
                 <RoomSelector rooms={rooms} />
                 <a href="/new">
                     <button className="button room_add">Add a room</button>

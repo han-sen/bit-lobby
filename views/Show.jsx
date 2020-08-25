@@ -1,4 +1,5 @@
 const React = require("react");
+const Logo = require("./components/Logo");
 const Room = require("./components/Room");
 const RoomDetails = require("./components/RoomDetails");
 const Chat = require("./components/Chat");
@@ -21,9 +22,7 @@ const Show = (props) => {
     const userName = props.userName;
     return (
         <Room page={name}>
-            <a href="/">
-                <h1>Bit Lobby</h1>
-            </a>
+            <Logo />
             <div className="room_wrap fade-in-up">
                 <div className="room_controls">
                     <img className="room_img" src={img} />

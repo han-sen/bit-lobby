@@ -2,8 +2,6 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Quantico:wght@700&display=swap");
 
-@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
-
 /************ GLOBAL STYLES ************/
 
 :root {
@@ -63,10 +61,6 @@ button {
     cursor: pointer;
 }
 
-img {
-    background: var(--grey-med);
-}
-
 strong {
     color: inherit;
 }
@@ -103,6 +97,11 @@ strong {
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
+}
+
+#bit_logo {
+    max-width: 16em;
+    margin: 1em;
 }
 
 .home_form_wrap {
@@ -161,6 +160,7 @@ button.room_add:hover {
     padding: 3em;
     margin: 2em 0;
     border-radius: 0.25em;
+    -webkit-box-shadow: 1em 1em var(--grey-light);
     box-shadow: 1em 1em var(--grey-light);
 }
 
@@ -255,7 +255,11 @@ button.room_add:hover {
 }
 
 .edit_controls_wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: baseline;
+    -ms-flex-align: baseline;
     align-items: baseline;
 }
 
@@ -280,7 +284,7 @@ button.room_add:hover {
     -webkit-box-flex: 1;
     -ms-flex: 1;
     flex: 1;
-    overflow: scroll;
+    overflow: auto;
     max-height: 12em;
 }
 
@@ -321,7 +325,7 @@ button.room_add:hover {
 
 .messages_wrap {
     height: 500px;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
 }
 
@@ -438,6 +442,7 @@ footer a:hover {
     padding: 3em;
     margin: 2em 0;
     border-radius: 0.25em;
+    -webkit-box-shadow: 0.5em 0.5em var(--grey-light);
     box-shadow: 0.5em 0.5em var(--grey-light);
 }
 
@@ -450,6 +455,10 @@ footer a:hover {
 body.dark {
     background: var(--night-blue);
     color: var(--green-light);
+}
+
+body.dark svg#bit_logo path {
+    fill: var(--blue-light);
 }
 
 body.dark input[name="userName"] {
@@ -467,6 +476,7 @@ body.dark .room_listing:hover {
 }
 
 body.dark .room_img {
+    -webkit-box-shadow: 0.25em 0.25em var(--night-blue-light);
     box-shadow: 0.25em 0.25em var(--night-blue-light);
 }
 
@@ -541,6 +551,7 @@ body.dark .input_wrap button[type="submit"] {
 }
 
 body.dark .edit_wrap {
+    -webkit-box-shadow: 0.5em 0.5em var(--night-blue-light);
     box-shadow: 0.5em 0.5em var(--night-blue-light);
     border: 1px solid var(--blue-light);
 }
@@ -586,6 +597,7 @@ body.dark .edit_wrap input {
     }
     .chat_wrap {
         width: calc(100vw - 2em);
+        -webkit-box-shadow: none;
         box-shadow: none;
     }
     .messages_wrap {
@@ -653,11 +665,20 @@ body.dark .edit_wrap input {
 }
 
 .spin {
+    -webkit-animation: spin 0.5s cubic-bezier(0.5, 1, 0.89, 1);
     animation: spin 0.5s cubic-bezier(0.5, 1, 0.89, 1);
+}
+
+@-webkit-keyframes spin {
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes spin {
     to {
+        -webkit-transform: rotate(360deg);
         transform: rotate(360deg);
     }
 }
