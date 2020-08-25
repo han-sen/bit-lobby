@@ -87,7 +87,7 @@ const removeUser = (roomId, userName) => {
 // format timestamps
 
 const formatTime = (time) => {
-    return moment(time).tz("America/Los_Angeles").format("h:mm a");
+    return moment(time).tz("America/New_York").format("h:mm a");
 };
 
 // <- WEBSOCKETS ====================================== ->
@@ -105,14 +105,14 @@ io.on("connection", (socket) => {
         // welcomes new user
         socket.emit("message", {
             userName: "Lobby Bot",
-            text: `Welcome to the room <strong>${user.userName}</strong>`,
+            text: `Welcome to the room <strong>${user.userName}</strong> 🎉`,
             createdAt: formatTime(Date.now()),
         });
 
         // announces new user to others
         socket.broadcast.to(user.roomId).emit("message", {
             userName: "Lobby Bot",
-            text: `<strong>${user.userName}</strong> has logged in`,
+            text: `👾 <strong>${user.userName}</strong> has logged in`,
             createdAt: formatTime(Date.now()),
         });
 
@@ -124,7 +124,7 @@ io.on("connection", (socket) => {
             // announce user has left
             io.to(user.roomId).emit("message", {
                 userName: "Lobby Bot",
-                text: `<strong>${user.userName}</strong> has logged off`,
+                text: `✌️ <strong>${user.userName}</strong> has logged off`,
                 createdAt: formatTime(Date.now()),
             });
         });
@@ -132,7 +132,6 @@ io.on("connection", (socket) => {
         // listen for chat message
         socket.on("chatMessage", (roomId, message) => {
             message.createdAt = formatTime(message.createdAt);
-            console.log(message);
             addMessage(roomId, message);
             io.to(user.roomId).emit("message", message);
         });

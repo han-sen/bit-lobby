@@ -48,7 +48,7 @@ li {
 }
 
 h1 {
-    font-family: "Fredoka One", sans-serif;
+    font-family: "Quantico", sans-serif;
     font-weight: 700;
     font-size: 2.5em;
 }
@@ -271,6 +271,7 @@ button.room_add:hover {
     background: var(--orange-med);
     border: 1px solid var(--black-med);
     margin-right: 0.5em;
+    margin-top: 0.5em;
     padding: 0.25em;
     border-radius: 0.125em;
 }
@@ -537,6 +538,16 @@ body.dark .input_wrap .input[type="text"] {
 body.dark .input_wrap button[type="submit"] {
     background: var(--green-med);
     border: 1px solid var(--green-med);
+}
+
+body.dark .edit_wrap {
+    box-shadow: 0.5em 0.5em var(--night-blue-light);
+    border: 1px solid var(--blue-light);
+}
+
+body.dark .edit_wrap input {
+    background: var(--green-opaque);
+    color: var(--black-med);
 }
 
 /************ @ MEDIA QUERIES ************/

@@ -1,5 +1,4 @@
 const express = require("express");
-const url = require("url");
 const router = express.Router();
 const Rooms = require("../models/rooms.js");
 const roomSeed = require("../models/roomSeed.js");
@@ -68,11 +67,13 @@ router.post("/", (req, res) => {
 
 // EDIT
 router.get("/:id/edit", (req, res) => {
+    const userName = req.query.userName || "Guest";
     Rooms.findById(req.params.id, (error, foundRoom) => {
         error
             ? res.send(message.error)
             : res.render("Edit", {
                   room: foundRoom,
+                  userName: userName,
               });
     });
 });

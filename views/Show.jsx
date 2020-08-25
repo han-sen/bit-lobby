@@ -32,7 +32,7 @@ const Show = (props) => {
                         description={description}
                         privateRoom={privateRoom}
                     />
-                    {!perma && <EditControls id={id} />}
+                    {!perma && <EditControls id={id} userName={userName} />}
                     <UserList users={users} />
                 </div>
                 <Chat roomId={id} userName={userName} messages={messages} />

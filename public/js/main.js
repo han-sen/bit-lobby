@@ -1,8 +1,9 @@
 // <- SOCKET.IO FUNCTIONS ======================================== ->
 
+const socket = io();
+
 // DOM elements
 
-const socket = io();
 const messageForm = document.querySelector("#messageForm");
 const messageWrap = document.querySelector(".messages_wrap");
 const userList = document.querySelector(".user_list");
@@ -34,7 +35,6 @@ const appendUser = (userName, incomingUser) => {
 // listen for addUser event
 
 socket.on("addUser", (incomingUser) => {
-    console.log("addUser triggered on client side");
     appendUser(userName, incomingUser);
 });
 
@@ -50,7 +50,6 @@ const removeUser = (exitingUser) => {
 // listen for remove user event
 
 socket.on("removeUser", (exitingUser) => {
-    console.log("removeUser triggered on client side");
     removeUser(exitingUser);
 });
 

@@ -4,7 +4,7 @@ const DeleteButton = require("./DeleteButton");
 const EditControls = (props) => {
     return (
         <div className="edit_controls_wrap">
-            <a href={`/${props.id}/edit`}>
+            <a href={`/${props.id}/edit?userName=${props.userName}`}>
                 <button className="controls_edit">Edit</button>
             </a>
             <DeleteButton id={props.id} />
