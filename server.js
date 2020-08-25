@@ -6,6 +6,7 @@ const http = require("http");
 const socketio = require("socket.io");
 const methodOverride = require("method-override");
 const moment = require("moment");
+const tz = require("moment-timezone");
 require("dotenv").config();
 const app = express();
 const server = http.createServer(app);
@@ -86,7 +87,7 @@ const removeUser = (roomId, userName) => {
 // format timestamps
 
 const formatTime = (time) => {
-    return moment(time).local().format("h:mm a");
+    return moment(time).tz("America/Los_Angeles").format("h:mm a");
 };
 
 // <- WEBSOCKETS ====================================== ->
