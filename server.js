@@ -64,7 +64,7 @@ const addUser = (roomId, userName) => {
         { $push: { users: userName } },
         { new: true, useFindAndModify: false },
         (error, updatedRoom) => {
-            error ? console.log(error.message) : console.log(updatedRoom.users);
+            error ? console.log(error.message) : console.log(updatedRoom);
         }
     );
 };
@@ -78,7 +78,7 @@ const removeUser = (roomId, userName) => {
         { $pull: { users: userName } },
         { new: true, useFindAndModify: false },
         (error, updatedRoom) => {
-            error ? console.log(error.message) : console.log(updatedRoom.users);
+            error ? console.log(error.message) : console.log(updatedRoom);
         }
     );
 };

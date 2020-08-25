@@ -148,7 +148,7 @@ button.room_add:hover {
 }
 
 .room_listing_wrap {
-    overflow-y: scroll;
+    overflow-y: auto;
     max-height: 16em;
     border-bottom: 1px solid var(--black-med);
     margin-bottom: 0.5em;
@@ -477,6 +477,7 @@ body.dark .fa-user {
 body.dark button.room_add {
     background: var(--blue-light);
     border-color: var(--blue-light);
+    color: var(--black-med);
 }
 
 body.dark button.room_add:hover {
