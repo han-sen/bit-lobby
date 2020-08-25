@@ -4,6 +4,8 @@
 
 Chat rooms for code talk.
 
+Live demo: https://bitlobby.herokuapp.com/
+
 ## Tech Stack
 
 -   node.js
