@@ -10,7 +10,7 @@ const Index = (props) => {
         <Default page="Bit Lobby">
             <ThemeToggle />
             <div className="home_form_wrap fade-in">
-                <h1>Room List</h1>
+                <h1>Bit Lobby</h1>
                 <RoomSelector rooms={rooms} />
                 <a href="/new">
                     <button className="button room_add">Add a room</button>

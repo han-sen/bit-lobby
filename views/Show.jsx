@@ -3,6 +3,7 @@ const Room = require("./components/Room");
 const RoomDetails = require("./components/RoomDetails");
 const Chat = require("./components/Chat");
 const UserList = require("./components/UserList");
+const EditControls = require("./components/EditControls");
 const Footer = require("./components/Footer");
 const ThemeToggle = require("./components/ThemeToggle");
 
@@ -31,11 +32,7 @@ const Show = (props) => {
                         description={description}
                         privateRoom={privateRoom}
                     />
-                    {!perma && (
-                        <button className="edit_button">
-                            <a href={`/${id}/edit`}>Edit</a>
-                        </button>
-                    )}
+                    {!perma && <EditControls id={id} />}
                     <UserList users={users} />
                 </div>
                 <Chat roomId={id} userName={userName} messages={messages} />

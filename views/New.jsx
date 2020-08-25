@@ -1,10 +1,12 @@
 const React = require("react");
 const Default = require("./components/Default");
+const ThemeToggle = require("./components/ThemeToggle");
 
 const New = () => {
     return (
         <Default page="Create New">
-            <div>
+            <ThemeToggle />
+            <div className="edit_wrap fade-in">
                 <h2>NEW PAGE</h2>
                 <form action="/" method="POST">
                     User Name:{" "}
@@ -14,6 +16,8 @@ const New = () => {
                         required
                         minLength="1"
                         maxLength="16"
+                        className="input"
+                        autoComplete="off"
                     />
                     <br />
                     Room Name:{" "}
@@ -23,6 +27,8 @@ const New = () => {
                         required
                         minLength="1"
                         maxLength="16"
+                        className="input"
+                        autoComplete="off"
                     />
                     <br />
                     Description:{" "}
@@ -32,6 +38,8 @@ const New = () => {
                         required
                         minLength="1"
                         maxLength="32"
+                        className="input"
+                        autoComplete="off"
                     />
                     <br />
                     Image:{" "}
@@ -39,12 +47,22 @@ const New = () => {
                         type="text"
                         name="img"
                         defaultValue="/img/room.png"
+                        className="input"
                     />
                     <br />
                     Private:
-                    <input type="checkbox" name="privateRoom" />
+                    <input
+                        type="checkbox"
+                        name="privateRoom"
+                        className="checkbox"
+                    />
                     <br />
-                    <input type="submit" name="" value="Create Room" />
+                    <input
+                        className="button is-primary"
+                        type="submit"
+                        name=""
+                        value="Create Room"
+                    />
                 </form>
             </div>
         </Default>

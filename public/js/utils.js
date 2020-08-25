@@ -37,20 +37,13 @@ darkTheme.onclick = () => {
 
 // <- ROOM LISTINGS ======================================== ->
 
-// make each container div select it's child checkbox
+// make each container div select it's child radio button
 
 const roomListings = document.querySelectorAll(".room_listing");
 
-console.log(roomListings);
-
 roomListings.forEach((room) => {
-    console.log(room);
     room.addEventListener("click", (e) => {
         const checkBox = e.target.querySelector(".checkbox");
-        console.log(checkBox);
         checkBox.checked = true;
     });
 });
-
-// <- FORM VALIDATOR ======================================== ->
-// add event listener to change/enable 'Join Room' button when ready

@@ -17,31 +17,33 @@ const RoomSelector = (props) => {
                         autoComplete="off"
                     />
                 </div>
-                {rooms
-                    .filter((room) => !room.privateRoom)
-                    .map((room) => {
-                        return (
-                            <div className="room_listing" key={room._id}>
-                                <div className="room_grid">
-                                    <input
-                                        type="radio"
-                                        name="room"
-                                        className="checkbox"
-                                        defaultValue={room._id}
-                                    />
+                <div className="room_listing_wrap">
+                    {rooms
+                        .filter((room) => !room.privateRoom)
+                        .map((room) => {
+                            return (
+                                <div className="room_listing" key={room._id}>
+                                    <div className="room_grid">
+                                        <input
+                                            type="radio"
+                                            name="room"
+                                            className="checkbox"
+                                            defaultValue={room._id}
+                                        />
+                                    </div>
+                                    <div className="room_grid">
+                                        <p> {room.name}</p>
+                                    </div>
+                                    <div className="room_grid">
+                                        <p>
+                                            {room.users.length}
+                                            <i className="fas fa-user"></i>
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className="room_grid">
-                                    <p> {room.name}</p>
-                                </div>
-                                <div className="room_grid">
-                                    <p>
-                                        {room.users.length}
-                                        <i className="fas fa-user"></i>
-                                    </p>
-                                </div>
-                            </div>
-                        );
-                    })}
+                            );
+                        })}
+                </div>
                 <button className="button is-primary" type="submit">
                     JOIN
                 </button>

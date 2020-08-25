@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;500;700&display=swap");
 
+@import url("https://fonts.googleapis.com/css2?family=Quantico:wght@700&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap");
+
 /************ GLOBAL STYLES ************/
 
 :root {
@@ -43,12 +47,14 @@ li {
 }
 
 h1 {
-    font-family: "Roboto Mono", monospace;
+    font-family: "Fredoka One", sans-serif;
     font-weight: 700;
-    font-size: 1.5em;
+    font-size: 2.5em;
 }
 
 h2 {
+    font-family: "Roboto Mono", monospace;
+    font-size: 1.2em;
     font-weight: 700;
 }
 
@@ -130,6 +136,24 @@ input[name="userName"] {
     background: var(--green-opaque);
 }
 
+button.room_add {
+    border: 1px solid var(--green-dark);
+    color: var(--green-med);
+}
+
+button.room_add:hover {
+    border: none;
+    color: white;
+    background: var(--green-med);
+}
+
+.room_listing_wrap {
+    overflow-y: scroll;
+    max-height: 16em;
+    border-bottom: 1px solid var(--black-med);
+    margin-bottom: 0.5em;
+}
+
 .room_list_wrap {
     width: 24em;
     border: 1px solid var(--black-med);
@@ -206,14 +230,32 @@ input[name="userName"] {
 
 .room_img {
     max-width: 10em;
+    max-height: 10em;
     -webkit-box-shadow: 0.25em 0.25em var(--grey-light);
     box-shadow: 0.25em 0.25em var(--grey-light);
     border: 1px solid var(--black-med);
     border-radius: 0.25em;
 }
 
-.edit_button {
+.edit_controls_wrap {
+    display: flex;
+    align-items: baseline;
+}
+
+.controls_edit {
     margin-top: 0.5em;
+    border: 1px solid var(--black-med);
+    margin-right: 0.5em;
+    padding: 0.25em;
+    border-radius: 0.125em;
+}
+
+.controls_delete {
+    background: var(--orange-med);
+    border: 1px solid var(--black-med);
+    margin-right: 0.5em;
+    padding: 0.25em;
+    border-radius: 0.125em;
 }
 
 .user_list_wrap {
@@ -372,6 +414,19 @@ footer a:hover {
     color: var(--blue-light);
 }
 
+.edit_wrap {
+    width: 24em;
+    border: 1px solid var(--black-med);
+    padding: 3em;
+    margin: 2em 0;
+    border-radius: 0.25em;
+    box-shadow: 0.5em 0.5em var(--grey-light);
+}
+
+.edit_wrap input {
+    margin-bottom: 0.25em;
+}
+
 /************ DARK MODE STYLES ************/
 
 body.dark {
@@ -476,6 +531,35 @@ body.dark .input_wrap button[type="submit"] {
         -webkit-box-direction: normal;
         -ms-flex-direction: row;
         flex-direction: row;
+        padding: 0;
+        margin: 1em 0;
+        max-width: 100%;
+    }
+    .room_details_wrap {
+        margin: 0 1em;
+    }
+    .room_img {
+        max-width: 5em;
+        max-height: 5em;
+    }
+    .room_name {
+        margin: 0;
+    }
+    .room_description {
+        margin: 0;
+    }
+    .user_list_wrap {
+        display: none;
+    }
+    .chat_wrap {
+        width: calc(100vw - 2em);
+        box-shadow: none;
+    }
+    .messages_wrap {
+        height: 20em;
+    }
+    .send_label {
+        display: none;
     }
 }
 

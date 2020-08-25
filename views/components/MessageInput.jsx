@@ -21,7 +21,8 @@ const MessageInput = (props) => {
                     autoComplete="off"
                 />
                 <button type="submit" className="button">
-                    <i className="fas fa-paper-plane"></i> Send
+                    <i className="fas fa-paper-plane"></i>{" "}
+                    <span className="send_label">Send</span>
                 </button>
             </form>
         </div>

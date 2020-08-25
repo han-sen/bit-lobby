@@ -4,7 +4,7 @@ const RoomDetails = (props) => {
     const { name, description, privateRoom } = props;
     return (
         <div className="room_details_wrap">
-            <h1 className="room_name">{name}</h1>
+            <h2 className="room_name">{name}</h2>
             {privateRoom ? (
                 <li className="room_privacy private">
                     <i className="fas fa-eye-slash"></i>private room
