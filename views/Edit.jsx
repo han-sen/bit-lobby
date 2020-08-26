@@ -25,7 +25,6 @@ const Edit = (props) => {
                         minLength="1"
                         maxLength="16"
                     />
-                    <br />
                     Room Name:{" "}
                     <input
                         type="text"
@@ -35,7 +34,6 @@ const Edit = (props) => {
                         minLength="1"
                         maxLength="16"
                     />
-                    <br />
                     Description:
                     <input
                         type="text"
@@ -45,7 +43,6 @@ const Edit = (props) => {
                         minLength="1"
                         maxLength="32"
                     />
-                    <br />
                     Image:{" "}
                     <input
                         type="text"
@@ -53,14 +50,14 @@ const Edit = (props) => {
                         className="input"
                         defaultValue="/img/room.png"
                     />
-                    <br />
-                    Private:
-                    <input
-                        type="checkbox"
-                        name="privateRoom"
-                        checked={privateRoom}
-                    />
-                    <br />
+                    <p>
+                        Private:
+                        <input
+                            type="checkbox"
+                            name="privateRoom"
+                            checked={privateRoom}
+                        />
+                    </p>
                     <div className="edit_controls_wrap">
                         <button
                             className="controls_edit"

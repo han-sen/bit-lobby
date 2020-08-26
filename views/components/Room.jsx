@@ -8,6 +8,7 @@ const Room = (props) => {
                     name="viewport"
                     content="width=device-width, initial-scale=1"
                 />
+                <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
                 <title>{props.page}</title>
                 <link
                     rel="stylesheet"
@@ -25,7 +26,7 @@ const Room = (props) => {
                 ></script>
             </head>
             <body>
-                <div className="page_wrap">{props.children}</div>
+                <div className="page_wrap rooms">{props.children}</div>
                 <script src="/js/utils.js"></script>
                 <script src="/socket.io/socket.io.js"></script>
                 <script src="/js/main.js"></script>

@@ -20,6 +20,9 @@ const RoomSelector = (props) => {
                 <div className="room_listing_wrap">
                     {rooms
                         .filter((room) => !room.privateRoom)
+                        .sort((a, b) =>
+                            a.users.length > b.users.length ? -1 : 1
+                        )
                         .map((room) => {
                             return (
                                 <div className="room_listing" key={room._id}>

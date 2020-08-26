@@ -13,6 +13,7 @@ const Index = (props) => {
             <div className="home_form_wrap fade-in">
                 {/* <img src="/img/bit-lobby-logo.svg" className="bit_logo" /> */}
                 <Logo />
+                <p>Chat rooms for code talk</p>
                 <RoomSelector rooms={rooms} />
                 <a href="/new">
                     <button className="button is-primary room_add">
