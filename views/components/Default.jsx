@@ -26,7 +26,7 @@ const Default = (props) => {
                 ></script>
             </head>
             <body>
-                <div className="page_wrap">{props.children}</div>
+                <div className="page_wrap index">{props.children}</div>
                 <script src="/js/utils.js"></script>
             </body>
         </html>

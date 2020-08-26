@@ -48,15 +48,18 @@ const Logo = () => {
                             </g>
                             <g>
                                 <polygon
+                                    className="polygon delay-0"
                                     points="59.653 0 19.884 0 0 34.441 19.884 68.882 59.653 68.882 79.538 34.441 59.653 0"
                                     fill="#67d1ac"
                                 />
                                 <polygon
+                                    className="polygon delay-1"
                                     points="19.884 68.882 59.653 0 79.538 34.441 59.653 68.882 19.884 68.882"
                                     opacity="0.1"
                                     style={{ mixBlendMode: "overlay" }}
                                 />
                                 <polygon
+                                    className="polygon delay-2"
                                     points="59.653 68.882 38.565 36.526 19.884 68.882 59.653 68.882"
                                     opacity="0.16"
                                     style={{ mixBlendMode: "overlay" }}

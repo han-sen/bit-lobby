@@ -15,7 +15,9 @@ const Index = (props) => {
                 <Logo />
                 <RoomSelector rooms={rooms} />
                 <a href="/new">
-                    <button className="button room_add">Add a room</button>
+                    <button className="button is-primary room_add">
+                        <i className="fas fa-cube"></i> Add Room
+                    </button>
                 </a>
             </div>
             <Footer />

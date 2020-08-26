@@ -1,11 +1,14 @@
 const React = require("react");
+const Logo = require("./components/Logo");
 const Default = require("./components/Default");
 const ThemeToggle = require("./components/ThemeToggle");
+const Footer = require("./components/Footer");
 
 const New = () => {
     return (
         <Default page="Create New">
             <ThemeToggle />
+            <Logo />
             <div className="edit_wrap fade-in">
                 <h2>NEW PAGE</h2>
                 <form action="/" method="POST">
@@ -65,6 +68,7 @@ const New = () => {
                     />
                 </form>
             </div>
+            <Footer />
         </Default>
     );
 };

@@ -102,3 +102,29 @@ const appendMessage = (messagePayload) => {
     // add new li to the message ul
     document.querySelector("#message_list").appendChild(li);
 };
+
+// <- COPY URL TO CLIPBOARD ======================================== ->
+
+const link = document.querySelector("#room_link_text");
+const icon = document.querySelector(".room_link").querySelector("i");
+
+const copyToClipboard = () => {
+    // grab hidden input in order to call .select()
+    // grab the URL and remove query string
+    const URL = window.location.href.split("?").shift();
+    // set, select, and copy the URL from input value
+    link.value = URL;
+    link.select();
+    document.execCommand("copy");
+    // animation icon to show link has been copied
+    icon.classList.add("spin");
+    // remove animation so it can be started over on next click
+    setTimeout(() => {
+        icon.classList.remove("spin");
+    }, 1000);
+};
+
+icon &&
+    document
+        .querySelector(".room_link")
+        .addEventListener("click", copyToClipboard);

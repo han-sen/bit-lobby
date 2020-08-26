@@ -19,6 +19,7 @@
     --black-med: #333431;
     --grey-light: #eee;
     --grey-med: #bdbdbd;
+    --grey-opaque: #f6f9fa;
     --night-blue: #0b1a2f;
     --night-blue-light: #192b42;
 }
@@ -99,8 +100,20 @@ strong {
     justify-content: space-between;
 }
 
-#bit_logo {
+.page_wrap.index {
+    background-color: #ffffff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 2 1'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='0' x2='0' y1='0' y2='1' gradientTransform='rotate(0,0.5,0.5)'%3E%3Cstop offset='0' stop-color='%23ffffff'/%3E%3Cstop offset='1' stop-color='%23f6f9fa'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='0' y2='1' gradientTransform='rotate(40,0.5,0.5)'%3E%3Cstop offset='0' stop-color='%23eeeeee' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23eeeeee' stop-opacity='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='c' gradientUnits='userSpaceOnUse' x1='0' y1='0' x2='2' y2='2' gradientTransform='rotate(57,0.5,0.5)'%3E%3Cstop offset='0' stop-color='%23eeeeee' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23eeeeee' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect x='0' y='0' fill='url(%23a)' width='2' height='1'/%3E%3Cg %3E%3Cpolygon fill='url(%23b)' points='0 1 0 0 2 0'/%3E%3Cpolygon fill='url(%23c)' points='2 1 2 0 0 0'/%3E%3C/g%3E%3C/svg%3E");
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.home_form_wrap #bit_logo {
     max-width: 16em;
+    margin: 1em;
+}
+
+#bit_logo {
+    max-width: 12em;
     margin: 1em;
 }
 
@@ -160,8 +173,9 @@ button.room_add:hover {
     padding: 3em;
     margin: 2em 0;
     border-radius: 0.25em;
-    -webkit-box-shadow: 1em 1em var(--grey-light);
-    box-shadow: 1em 1em var(--grey-light);
+    /* -webkit-box-shadow: 1em 1em var(--grey-light);
+    box-shadow: 1em 1em var(--grey-light); */
+    background: white;
 }
 
 .room_list_wrap button {
@@ -444,6 +458,7 @@ footer a:hover {
     border-radius: 0.25em;
     -webkit-box-shadow: 0.5em 0.5em var(--grey-light);
     box-shadow: 0.5em 0.5em var(--grey-light);
+    background: white;
 }
 
 .edit_wrap input {
@@ -455,6 +470,11 @@ footer a:hover {
 body.dark {
     background: var(--night-blue);
     color: var(--green-light);
+}
+
+body.dark .page_wrap {
+    background-image: none;
+    background-color: transparent;
 }
 
 body.dark svg#bit_logo path {
@@ -481,6 +501,7 @@ body.dark .room_img {
 }
 
 body.dark .room_list_wrap {
+    background: transparent;
     border: 1px solid var(--blue-dark);
     -webkit-box-shadow: 0.25em 0.25em var(--night-blue-light);
     box-shadow: 0.25em 0.25em var(--night-blue-light);
@@ -554,6 +575,7 @@ body.dark .edit_wrap {
     -webkit-box-shadow: 0.5em 0.5em var(--night-blue-light);
     box-shadow: 0.5em 0.5em var(--night-blue-light);
     border: 1px solid var(--blue-light);
+    background: transparent;
 }
 
 body.dark .edit_wrap input {
@@ -564,6 +586,10 @@ body.dark .edit_wrap input {
 /************ @ MEDIA QUERIES ************/
 
 @media screen and (max-width: 768px) {
+    #bit_logo {
+        -ms-flex-item-align: start;
+        align-self: flex-start;
+    }
     .room_wrap {
         -webkit-box-orient: vertical;
         -webkit-box-direction: normal;
@@ -611,8 +637,8 @@ body.dark .edit_wrap input {
 /************ ANIMATIONS ************/
 
 .fade-in {
-    -webkit-animation: fade-in 1s cubic-bezier(0.5, 1, 0.89, 1) forwards;
-    animation: fade-in 1s cubic-bezier(0.5, 1, 0.89, 1) forwards;
+    -webkit-animation: fade-in 1.4s cubic-bezier(0.5, 1, 0.89, 1) forwards;
+    animation: fade-in 1.4s cubic-bezier(0.5, 1, 0.89, 1) forwards;
 }
 
 @-webkit-keyframes fade-in {
@@ -681,4 +707,50 @@ body.dark .edit_wrap input {
         -webkit-transform: rotate(360deg);
         transform: rotate(360deg);
     }
+}
+
+/*** delay util classes ***/
+
+.polygon {
+    -webkit-transform: rotateY(90deg) rotateX(-15deg);
+    transform: rotateY(90deg) rotateX(-15deg);
+    -webkit-animation: polymorph 1s ease-in-out forwards;
+    animation: polymorph 1s ease-in-out forwards;
+}
+
+@-webkit-keyframes polymorph {
+    from {
+        -webkit-transform: rotateY(90deg) rotateX(-15deg);
+        transform: rotateY(90deg) rotateX(-15deg);
+    }
+    to {
+        -webkit-transform: rotateY(0deg) rotateX(0deg);
+        transform: rotateY(0deg) rotateX(0deg);
+    }
+}
+
+@keyframes polymorph {
+    from {
+        -webkit-transform: rotateY(90deg) rotateX(-15deg);
+        transform: rotateY(90deg) rotateX(-15deg);
+    }
+    to {
+        -webkit-transform: rotateY(0deg) rotateX(0deg);
+        transform: rotateY(0deg) rotateX(0deg);
+    }
+}
+
+.delay-0 {
+    -webkit-animation-delay: 0s;
+    animation-delay: 0s;
+}
+
+.delay-1 {
+    -webkit-animation-delay: 0.2s;
+    animation-delay: 0.2s;
+}
+
+.delay-2 {
+    -webkit-animation-delay: 0.4s;
+    animation-delay: 0.4s;
 }

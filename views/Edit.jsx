@@ -1,7 +1,9 @@
 const React = require("react");
 const Default = require("./components/Default");
+const Logo = require("./components/Logo");
 const DeleteButton = require("./components/DeleteButton");
 const ThemeToggle = require("./components/ThemeToggle");
+const Footer = require("./components/Footer");
 
 const Edit = (props) => {
     const { id, name, description, privateRoom } = props.room;
@@ -9,6 +11,7 @@ const Edit = (props) => {
     return (
         <Default page="Edit Page">
             <ThemeToggle />
+            <Logo />
             <div className="edit_wrap fade-in">
                 <h2>Edit Page</h2>
                 <form action={`/${id}?_method=PUT`} method="POST">
@@ -71,6 +74,7 @@ const Edit = (props) => {
                 </form>
                 <DeleteButton id={id} />
             </div>
+            <Footer />
         </Default>
     );
 };
